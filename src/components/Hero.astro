@@ -1,0 +1,83 @@
+---
+import { Mail, Linkedin, Github } from "@lucide/astro";
+---
+
+<section
+  class="min-h-screen flex items-center justify-center px-4 relative overflow-hidden"
+>
+  <!-- Background decoration -->
+  <div class="absolute inset-0 overflow-hidden">
+    <div
+      class="absolute -top-1/2 -right-1/2 w-full h-full bg-linear-to-br from-emerald-100/30 to-green-100/30 rounded-full blur-3xl"
+    >
+    </div>
+    <div
+      class="absolute -bottom-1/2 -left-1/2 w-full h-full bg-linear-to-tr from-teal-100/30 to-emerald-100/30 rounded-full blur-3xl"
+    >
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto text-center relative z-10">
+    <h1
+      class="text-6xl md:text-7xl lg:text-8xl mb-6 bg-linear-to-r from-slate-900 via-emerald-900 to-slate-900 bg-clip-text text-transparent"
+    >
+      Web Developer
+    </h1>
+
+    <p class="text-xl md:text-2xl text-slate-600 mb-8 max-w-3xl mx-auto">
+      Pedro Tomás Hernández: Frontend Lead & Software Architect. 10 años
+      construyendo productos escalables y liderando equipos técnicos de alto
+      rendimiento.
+    </p>
+
+    <div class="flex flex-wrap gap-4 justify-center mb-12">
+      <button
+        class="inline-flex items-center gap-2 px-6 py-3 text-lg bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors"
+        id="contact-btn"
+      >
+        <Mail class="w-5 h-5" />
+        Get in Touch
+      </button>
+      <button
+        class="inline-flex items-center px-6 py-3 text-lg border-2 border-emerald-600 text-emerald-700 hover:bg-emerald-50 rounded-lg transition-colors"
+        id="work-btn"
+      >
+        View My Work
+      </button>
+    </div>
+
+    <div class="flex gap-4 justify-center">
+      <a
+        href="https://github.com/TommyHernandez"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="p-3 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow hover:scale-110 duration-200"
+      >
+        <Github class="w-6 h-6 text-slate-700" />
+      </a>
+      <a
+        href="https://linkedin.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="p-3 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow hover:scale-110 duration-200"
+      >
+        <Linkedin class="w-6 h-6 text-emerald-600" />
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const contactBtn = document.getElementById("contact-btn");
+  const workBtn = document.getElementById("work-btn");
+
+  function scrollToSection(sectionId: string) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
+  contactBtn?.addEventListener("click", () => scrollToSection("contact"));
+  workBtn?.addEventListener("click", () => scrollToSection("experience"));
+</script>
