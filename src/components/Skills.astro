@@ -1,0 +1,205 @@
+---
+const skillsData = {
+  react: {
+    title: "React Ecosystem",
+    icon: "⚛️",
+    color: "emerald",
+    gradient: "from-emerald-500 to-teal-600",
+    description: "My primary expertise and passion",
+    skills: [
+      { name: "React", experience: "8 years", intensity: "core" },
+      { name: "Next.js", experience: "5 years", intensity: "core" },
+      { name: "TypeScript", experience: "6 years", intensity: "core" },
+      { name: "Zustand", experience: "3 years", intensity: "regular" },
+      { name: "React Query", experience: "4 years", intensity: "regular" },
+      {
+        name: "Styled Components",
+        experience: "5 years",
+        intensity: "regular",
+      },
+    ],
+  },
+  frameworks: {
+    title: "Other Frameworks",
+    icon: "🧩",
+    color: "teal",
+    gradient: "from-teal-500 to-green-600",
+    description: "Versatile across technologies",
+    skills: [
+      { name: "Vue.js", experience: "4 years", intensity: "regular" },
+      { name: "Angular", experience: "3 years", intensity: "regular" },
+      { name: "Svelte", experience: "2 years", intensity: "exploring" },
+      { name: "jQuery", experience: "7 years", intensity: "regular" },
+    ],
+  },
+  backend: {
+    title: "Backend & Full Stack",
+    icon: "🗄️",
+    color: "green",
+    gradient: "from-green-500 to-emerald-600",
+    description: "End-to-end development",
+    skills: [
+      { name: "PHP", experience: "6 years", intensity: "regular" },
+      { name: "Node.js", experience: "5 years", intensity: "regular" },
+      { name: "Express", experience: "4 years", intensity: "regular" },
+      { name: "REST APIs", experience: "8 years", intensity: "core" },
+      { name: "GraphQL", experience: "3 years", intensity: "regular" },
+    ],
+  },
+  tools: {
+    title: "Tools & DevOps",
+    icon: "🔧",
+    color: "lime",
+    gradient: "from-lime-500 to-green-600",
+    description: "Modern development workflow",
+    skills: [
+      { name: "Git", experience: "10 years", intensity: "core" },
+      { name: "Webpack", experience: "6 years", intensity: "regular" },
+      { name: "Vite", experience: "3 years", intensity: "regular" },
+      { name: "Docker", experience: "4 years", intensity: "regular" },
+      { name: "CI/CD", experience: "5 years", intensity: "regular" },
+    ],
+  },
+};
+const categories = Object.keys(skillsData);
+
+const getIntensityStyles = (intensity) => {
+  switch (intensity) {
+    case "core":
+      return "bg-emerald-600 text-white border-emerald-600 text-lg px-6 py-4 shadow-lg shadow-emerald-500/30";
+    case "regular":
+      return "bg-emerald-100 text-emerald-800 border-emerald-300 text-base px-5 py-3";
+    case "exploring":
+      return "bg-white text-emerald-700 border-emerald-200 text-sm px-4 py-2";
+    default:
+      return "bg-white text-slate-700 border-slate-300 text-base px-4 py-2";
+  }
+};
+---
+
+<section
+  id="skills"
+  class="py-20 px-4 bg-linear-to-br from-slate-900 via-emerald-900 to-slate-900 text-white relative overflow-hidden"
+>
+  <div class="absolute inset-0 overflow-hidden opacity-10">
+    <div
+      class="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500 rounded-full blur-3xl animate-pulse"
+    >
+    </div>
+    <div
+      class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-green-500 rounded-full blur-3xl animate-pulse delay-1000"
+    >
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto relative z-10">
+    <div class="text-center mb-16">
+      <div
+        class="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/20 rounded-full mb-4 backdrop-blur"
+      >
+        <span class="w-4 h-4 text-emerald-300">⚡</span>
+        <span class="text-sm text-emerald-200">Technical Expertise</span>
+      </div>
+      <h2 class="text-4xl md:text-5xl mb-4">Skills That Deliver</h2>
+      <p class="text-lg text-slate-300 max-w-2xl mx-auto">
+        A decade of mastery across the modern web development stack
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 mb-12">
+      {
+        categories.map((category) => {
+          const data = skillsData[category];
+          return (
+            <div
+              key={category}
+              class="bg-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/10 hover:border-emerald-500/50 transition-all duration-300"
+            >
+              <div class="flex items-center gap-3 mb-6">
+                <div class={`p-3 bg-linear-to-br ${data.gradient} rounded-2xl`}>
+                  <span class="w-6 h-6 text-white">{data.icon}</span>
+                </div>
+                <div>
+                  <h3 class="text-2xl">{data.title}</h3>
+                  <p class="text-sm text-emerald-300">{data.description}</p>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap gap-3">
+                {data.skills.map((skill, index) => (
+                  <div
+                    key={index}
+                    class={`group rounded-2xl border-2 transition-all duration-300 cursor-pointer hover:scale-105 ${getIntensityStyles(skill.intensity)}`}
+                  >
+                    <div class="flex flex-col">
+                      <span class="font-medium">{skill.name}</span>
+                      <span class="text-xs opacity-0 mt-1 transition-opacity duration-200 group-hover:opacity-90">
+                        {skill.experience}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+
+    <div
+      class="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10 mb-12"
+    >
+      <div class="flex items-center gap-2 mb-4">
+        <span class="w-5 h-5 text-emerald-300">✨</span>
+        <h4 class="text-lg">Proficiency Guide</h4>
+      </div>
+      <div class="flex flex-wrap gap-6 text-sm">
+        <div class="flex items-center gap-2">
+          <div
+            class="w-4 h-4 bg-emerald-600 rounded-full shadow-lg shadow-emerald-500/30"
+          >
+          </div>
+          <span>Core Expertise - Daily use</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <div
+            class="w-4 h-4 bg-emerald-100 rounded-full border-2 border-emerald-300"
+          >
+          </div>
+          <span>Regular - Production experience</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <div
+            class="w-4 h-4 bg-white rounded-full border-2 border-emerald-200"
+          >
+          </div>
+          <span>Exploring - Learning & experimenting</span>
+        </div>
+      </div>
+      <p class="text-xs text-slate-400 mt-4 italic">
+        💡 Hover over any skill to see years of experience
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div
+        class="bg-linear-to-br from-emerald-500 to-teal-600 rounded-2xl p-6 text-center"
+      >
+        <div class="text-4xl mb-2">10+</div>
+        <p class="text-emerald-100">Years Experience</p>
+      </div>
+      <div
+        class="bg-linear-to-br from-green-500 to-emerald-600 rounded-2xl p-6 text-center"
+      >
+        <div class="text-4xl mb-2">20+</div>
+        <p class="text-green-100">Technologies Mastered</p>
+      </div>
+      <div
+        class="bg-linear-to-br from-teal-500 to-green-600 rounded-2xl p-6 text-center"
+      >
+        <div class="text-4xl mb-2">∞</div>
+        <p class="text-teal-100">Learning Never Stops</p>
+      </div>
+    </div>
+  </div>
+</section>

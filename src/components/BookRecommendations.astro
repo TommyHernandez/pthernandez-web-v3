@@ -1,0 +1,161 @@
+---
+import { BookOpen, Star, ExternalLink, Quote } from "@lucide/astro";
+
+const books = [
+  {
+    title: "Clean Code",
+    author: "Robert C. Martin",
+    category: "Software Craftsmanship",
+    rating: 5,
+    review:
+      "The definitive guide to writing maintainable code. Every developer should read this at least twice—once as a junior and once as a senior to truly appreciate its wisdom.",
+    image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&q=80",
+    why: "Transformed how I approach code structure and naming conventions",
+  },
+  {
+    title: "Designing Data-Intensive Applications",
+    author: "Martin Kleppmann",
+    category: "System Design",
+    rating: 5,
+    review:
+      "An incredible deep dive into the fundamentals of distributed systems. Essential for understanding how modern web applications scale.",
+    image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&q=80",
+    why: "Crucial for building scalable enterprise applications",
+  },
+  {
+    title: "The Pragmatic Programmer",
+    author: "David Thomas & Andrew Hunt",
+    category: "Professional Development",
+    rating: 5,
+    review:
+      "Timeless advice that remains relevant no matter how technology evolves. It's about mindset and approach, not just code.",
+    image: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=400&q=80",
+    why: "Shaped my professional philosophy as a developer",
+  },
+  {
+    title: "Refactoring",
+    author: "Martin Fowler",
+    category: "Code Quality",
+    rating: 5,
+    review:
+      "The ultimate guide to improving existing code without breaking functionality. A must-have reference for any serious developer.",
+    image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=400&q=80",
+    why: "My go-to resource when working with legacy code",
+  },
+  {
+    title: "Don't Make Me Think",
+    author: "Steve Krug",
+    category: "UX Design",
+    rating: 4,
+    review:
+      "Short, practical, and eye-opening. Taught me that the best code is useless if users can't understand the interface.",
+    image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&q=80",
+    why: "Bridges the gap between development and user experience",
+  },
+  {
+    title: "JavaScript: The Good Parts",
+    author: "Douglas Crockford",
+    category: "JavaScript",
+    rating: 4,
+    review:
+      "Essential reading for understanding JavaScript deeply. Despite the language's evolution, these fundamentals remain crucial.",
+    image: "https://images.unsplash.com/photo-1589998059171-988d887df646?w=400&q=80",
+    why: "Foundation for mastering modern JavaScript frameworks",
+  },
+];
+
+const starSlots = Array.from({ length: 5 });
+---
+
+<section id="books" class="py-20 px-4 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-emerald-100 rounded-full mb-4">
+        <BookOpen class="w-4 h-4 text-emerald-600" />
+        <span class="text-sm text-emerald-700">Reading List</span>
+      </div>
+      <h2 class="text-4xl md:text-5xl mb-4 text-slate-900">Books That Changed My Code</h2>
+      <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+        The books that shaped my journey as a developer—from fundamentals to philosophy
+      </p>
+    </div>
+
+    <div class="mb-12 bg-gradient-to-r from-emerald-50 to-green-50 rounded-2xl p-8 border-l-4 border-emerald-500">
+      <Quote class="w-10 h-10 text-emerald-600 mb-4" />
+      <p class="text-xl text-slate-700 italic mb-2">
+        "A developer who doesn't read books is like a carpenter who doesn't sharpen their tools."
+      </p>
+      <p class="text-slate-600">Reading isn't just learning—it's investing in your craft.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {
+        books.map((book, index) => (
+          <article
+            key={index}
+            class="group hover:shadow-xl transition-all duration-300 border-2 hover:border-emerald-200 overflow-hidden rounded-2xl bg-white"
+          >
+            <div class="relative h-48 overflow-hidden">
+              <img
+                src={book.image}
+                alt={book.title}
+                loading="lazy"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+              <div class="absolute top-4 right-4 flex gap-1">
+                {
+                  starSlots.map((_, i) => (
+                    <Star
+                      key={i}
+                      class={`w-4 h-4 ${i < book.rating ? "fill-yellow-400 text-yellow-400" : "text-slate-300"}`}
+                    />
+                  ))
+                }
+              </div>
+            </div>
+
+            <div class="pt-6 pb-6 px-6">
+              <span class="inline-block mb-3 px-3 py-1 bg-emerald-100 text-emerald-700 text-xs rounded-full">
+                {book.category}
+              </span>
+              <h3 class="text-xl mb-1 text-slate-900 group-hover:text-emerald-700 transition-colors">
+                {book.title}
+              </h3>
+              <p class="text-sm text-slate-500 mb-3">by {book.author}</p>
+
+              <p class="text-sm text-slate-600 mb-3 leading-relaxed">{book.review}</p>
+
+              <div class="bg-emerald-50 rounded-lg p-3 mb-4">
+                <p class="text-xs text-emerald-900">
+                  <strong>Why it matters:</strong> {book.why}
+                </p>
+              </div>
+
+              <button
+                type="button"
+                class="flex items-center gap-2 text-emerald-600 text-sm hover:gap-3 transition-all group/btn"
+              >
+                Find This Book
+                <ExternalLink class="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
+              </button>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="mt-16 bg-gradient-to-br from-slate-900 to-emerald-900 rounded-3xl p-12 text-center text-white">
+      <BookOpen class="w-16 h-16 mx-auto mb-6 text-emerald-300" />
+      <h3 class="text-3xl mb-4">Currently Reading</h3>
+      <p class="text-lg text-slate-300 mb-6 max-w-2xl mx-auto">
+        Always learning, always growing. I typically read 2-3 technical books per quarter. Have a recommendation? I'd love to hear it!
+      </p>
+      <a
+        href="#contact"
+        class="inline-flex items-center justify-center px-8 py-3 bg-emerald-600 hover:bg-emerald-700 rounded-full transition-colors"
+      >
+        Share Your Recommendations
+      </a>
+    </div>
+  </div>
+</section>

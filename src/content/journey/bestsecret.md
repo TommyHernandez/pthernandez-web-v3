@@ -1,0 +1,25 @@
+---
+company: "BestSecret & Accenture"
+role: "Fullstack Developer & Mentor"
+period: "2018 - 2021"
+theme: "Versatility & Knowledge Sharing"
+icon: "👥"
+color: "from-green-600 to-emerald-600"
+story: "Proved my adaptability across different tech stacks while giving back to the developer community through mentorship."
+highlights:
+  - title: "Multi-Stack Mastery"
+    description: "Seamlessly transitioned between Vue.js at BestSecret for e-commerce features, React for internal tools, and even Flutter for mobile experiments."
+    impact: "3 different stacks in production"
+  - title: "Mentoring Students"
+    description: "Mentored junior developers and bootcamp students at Accenture, teaching them modern development practices and helping them transition into professional roles."
+    impact: "12+ developers mentored"
+  - title: "E-commerce Excellence"
+    description: "Built critical e-commerce features handling thousands of transactions, from product catalogs to checkout flows."
+    impact: "Millions in transactions processed"
+stack:
+  - "Vue.js"
+  - "React"
+  - "Flutter"
+  - "PHP"
+keyLearning: "The best developers aren't loyal to a single framework—they choose the right tool for the job and help others grow along the way."
+---

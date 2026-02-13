@@ -1,0 +1,119 @@
+---
+import { Mail, MapPin, Send } from "@lucide/astro";
+
+const contactOptions = [
+  {
+    label: "Email",
+    description: "your.email@example.com",
+    href: "mailto:your.email@example.com",
+    icon: Mail,
+  },
+  {
+    label: "Location",
+    description: "Available for Remote Work",
+    icon: MapPin,
+  },
+];
+
+const currentYear = new Date().getFullYear();
+---
+
+<section id="contact" class="py-20 px-4 bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900 text-white">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl mb-4">Let's Work Together</h2>
+      <p class="text-lg text-slate-300 max-w-2xl mx-auto">
+        Have a project in mind? I'm always open to discussing new opportunities and collaborations.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-2xl mb-6">Get in Touch</h3>
+          <p class="text-slate-300 mb-8">
+            Whether you have a question, a project proposal, or just want to say hello, feel free to reach out. I'll do my best to respond within 24 hours.
+          </p>
+        </div>
+
+        <div class="bg-white/10 border border-white/20 backdrop-blur rounded-3xl px-6 py-6 space-y-6">
+          {
+            contactOptions.map((option) => (
+              <div class="flex items-center gap-4" role="listitem">
+                <div class="p-3 bg-emerald-500/20 rounded-lg">
+                  <option.icon class="w-6 h-6" />
+                </div>
+                <div>
+                  <p class="text-sm text-slate-300">{option.label}</p>
+                  {
+                    option.href ? (
+                      <a
+                        href={option.href}
+                        class="text-lg hover:text-emerald-300 transition-colors"
+                      >
+                        {option.description}
+                      </a>
+                    ) : (
+                      <p class="text-lg">{option.description}</p>
+                    )
+                  }
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="bg-white/10 border border-white/20 backdrop-blur rounded-3xl px-6 py-6">
+        <form method="post" class="space-y-4">
+          <div>
+            <label for="name" class="block text-sm mb-2">Name</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              placeholder="Your name"
+              required
+              class="w-full rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-slate-400 focus:border-emerald-400 focus:outline-none"
+            />
+          </div>
+          <div>
+            <label for="email" class="block text-sm mb-2">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="your.email@example.com"
+              required
+              class="w-full rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-slate-400 focus:border-emerald-400 focus:outline-none"
+            />
+          </div>
+          <div>
+            <label for="message" class="block text-sm mb-2">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              placeholder="Tell me about your project..."
+              required
+              class="w-full rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-slate-400 focus:border-emerald-400 focus:outline-none resize-none"
+            />
+          </div>
+          <button
+            type="submit"
+            class="w-full inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 px-6 py-3 text-sm font-medium hover:bg-emerald-700 transition-colors"
+          >
+            <Send class="w-4 h-4" />
+            Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="mt-16 pt-8 border-t border-white/20 text-center">
+      <p class="text-slate-300">
+        © {currentYear} Web Developer Portfolio. Built with Astro & Tailwind CSS.
+      </p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,25 @@
+---
+company: "Unit4"
+role: "Senior Frontend Developer"
+period: "2021 - 2023"
+theme: "Scalability & Enterprise Architecture"
+icon: "📈"
+color: "from-teal-600 to-green-600"
+story: "Mastered the art of building scalable applications for complex corporate environments."
+highlights:
+  - title: "Complex Corporate Portals"
+    description: "Architected and developed enterprise-grade portals using Angular, handling thousands of concurrent users across multiple business units."
+    impact: "5000+ daily users"
+  - title: "Performance Optimization"
+    description: "Implemented lazy loading, code splitting, and smart caching strategies to ensure smooth performance even with massive datasets."
+    impact: "3x faster load times"
+  - title: "Modular Architecture"
+    description: "Designed a modular architecture that allowed different teams to work independently while maintaining system cohesion."
+    impact: "Reduced merge conflicts by 60%"
+stack:
+  - "Angular"
+  - "TypeScript"
+  - "RxJS"
+  - "NgRx"
+keyLearning: "Scale isn't just about handling more users—it's about creating systems that multiple teams can work on without stepping on each other's toes."
+---

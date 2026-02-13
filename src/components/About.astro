@@ -1,0 +1,160 @@
+---
+import { Code2, Rocket, Zap, Terminal, Sparkles } from "@lucide/astro";
+---
+
+<section id="about" class="py-20 px-4 bg-white relative overflow-hidden">
+  <!-- Decorative elements -->
+  <div
+    class="absolute top-20 right-10 w-32 h-32 bg-emerald-100 rounded-full opacity-20 blur-3xl"
+  >
+  </div>
+  <div
+    class="absolute bottom-20 left-10 w-40 h-40 bg-green-100 rounded-full opacity-20 blur-3xl"
+  >
+  </div>
+
+  <div class="max-w-6xl mx-auto relative">
+    <div class="text-center mb-16">
+      <div
+        class="inline-flex items-center gap-2 px-4 py-2 bg-emerald-50 rounded-full mb-4"
+      >
+        <Sparkles class="w-4 h-4 text-emerald-600" />
+        <span class="text-sm text-emerald-700">Who I Am</span>
+      </div>
+      <h2 class="text-4xl md:text-5xl mb-4 text-slate-900">
+        More Than Just Code
+      </h2>
+    </div>
+
+    <!-- Main Content - Asymmetric Grid -->
+    <div class="grid md:grid-cols-3 gap-6 mb-12">
+      <!-- Large Feature Card -->
+      <div
+        class="md:col-span-2 bg-linear-to-br from-emerald-500 to-teal-600 rounded-3xl p-8 text-white relative overflow-hidden"
+      >
+        <div
+          class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32"
+        >
+        </div>
+        <div
+          class="absolute bottom-0 left-0 w-48 h-48 bg-black/10 rounded-full -ml-24 -mb-24"
+        >
+        </div>
+
+        <div class="relative z-10">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="p-3 bg-white/20 rounded-2xl backdrop-blur">
+              <Terminal class="w-8 h-8" />
+            </div>
+            <h3 class="text-3xl">10+ Years of Excellence</h3>
+          </div>
+          <p class="text-lg leading-relaxed text-white/90 mb-6">
+            I don't just write code—I craft digital experiences. With over a
+            decade of hands-on experience, I've learned that the best solutions
+            come from understanding both the technical and human sides of
+            development.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <div
+              class="px-4 py-2 bg-white/20 backdrop-blur rounded-full text-sm"
+            >
+              React Specialist
+            </div>
+            <div
+              class="px-4 py-2 bg-white/20 backdrop-blur rounded-full text-sm"
+            >
+              Full-Stack
+            </div>
+            <div
+              class="px-4 py-2 bg-white/20 backdrop-blur rounded-full text-sm"
+            >
+              Enterprise Scale
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Small stat card -->
+      <div
+        class="bg-slate-900 rounded-3xl p-8 text-white flex flex-col justify-center items-center text-center"
+      >
+        <Code2 class="w-16 h-16 mb-4 text-emerald-400" />
+        <div class="text-5xl mb-2">50+</div>
+        <p class="text-slate-300">Projects Delivered</p>
+      </div>
+    </div>
+
+    <!-- Bottom Row -->
+    <div class="grid md:grid-cols-3 gap-6 mb-12">
+      <!-- Vertical Card -->
+      <div
+        class="bg-linear-to-br from-slate-50 to-emerald-50 rounded-3xl p-8 border-2 border-emerald-100"
+      >
+        <Rocket class="w-12 h-12 mb-4 text-emerald-600" />
+        <h3 class="text-xl mb-3 text-slate-900">Enterprise Ready</h3>
+        <p class="text-slate-600">
+          Worked with industry giants like <strong>Bestsecret</strong> and <strong
+            >SEAT</strong
+          >, delivering scalable solutions that handle millions of users.
+        </p>
+      </div>
+
+      <!-- Tech Philosophy Card -->
+      <div
+        class="md:col-span-2 bg-white rounded-3xl p-8 border-2 border-slate-200 relative overflow-hidden"
+      >
+        <div class="absolute top-0 right-0 opacity-5">
+          <Zap class="w-64 h-64 text-emerald-600" />
+        </div>
+        <div class="relative">
+          <h3 class="text-2xl mb-4 text-slate-900 flex items-center gap-3">
+            <Zap class="w-7 h-7 text-emerald-600" />
+            My Approach
+          </h3>
+          <div class="space-y-4">
+            <div class="flex gap-4 items-start">
+              <div class="w-2 h-2 bg-emerald-500 rounded-full mt-2"></div>
+              <div>
+                <p class="text-slate-700">
+                  <strong class="text-slate-900">React is my superpower</strong
+                  >, but I'm fluent in multiple frameworks including Vue,
+                  Angular, and the classics—PHP and vanilla JavaScript.
+                </p>
+              </div>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="w-2 h-2 bg-emerald-500 rounded-full mt-2"></div>
+              <div>
+                <p class="text-slate-700">
+                  <strong class="text-slate-900"
+                    >I believe in clean, maintainable code</strong
+                  > that stands the test of time. No shortcuts, no technical debt.
+                </p>
+              </div>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="w-2 h-2 bg-emerald-500 rounded-full mt-2"></div>
+              <div>
+                <p class="text-slate-700">
+                  <strong class="text-slate-900"
+                    >Performance and user experience</strong
+                  > aren't optional—they're the foundation of everything I build.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quote Section -->
+    <div
+      class="bg-linear-to-r from-slate-900 to-emerald-900 rounded-3xl p-12 text-center"
+    >
+      <blockquote class="text-2xl md:text-3xl text-white mb-4 italic">
+        "Code is poetry, but production is reality."
+      </blockquote>
+      <p class="text-emerald-300">— My development philosophy</p>
+    </div>
+  </div>
+</section>

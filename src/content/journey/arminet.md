@@ -1,0 +1,25 @@
+---
+company: "Arminet"
+role: "Fullstack Developer"
+period: "2015 - 2018"
+theme: "Fullstack Roots & Foundation"
+icon: "💻"
+color: "from-emerald-600 to-lime-600"
+story: "Where it all began—building complete web solutions from database to interface."
+highlights:
+  - title: "PHP & MySQL Foundation"
+    description: "Started as a fullstack developer working with PHP and MySQL, learning how servers, databases, and frontends work together. This full-picture understanding still shapes my frontend decisions today."
+    impact: "Complete fullstack vision"
+  - title: "End-to-End Ownership"
+    description: "Owned entire features from database design through API development to user interface, giving me a comprehensive understanding of web development."
+    impact: "20+ complete features shipped"
+  - title: "Transition to Modern Frontend"
+    description: "Witnessed and participated in the shift from jQuery to modern frameworks, understanding both paradigms deeply."
+    impact: "Mastered the transition"
+stack:
+  - "PHP"
+  - "MySQL"
+  - "JavaScript"
+  - "jQuery"
+keyLearning: "Understanding the backend makes you a better frontend developer. Knowing what happens on the server helps you build better interfaces."
+---
