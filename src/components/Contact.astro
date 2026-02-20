@@ -18,12 +18,16 @@ const contactOptions = [
 const currentYear = new Date().getFullYear();
 ---
 
-<section id="contact" class="py-20 px-4 bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900 text-white">
+<section
+  id="contact"
+  class="py-20 px-4 bg-linear-to-br from-slate-900 via-emerald-900 to-slate-900 text-white"
+>
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-16">
       <h2 class="text-4xl md:text-5xl mb-4">Let's Work Together</h2>
       <p class="text-lg text-slate-300 max-w-2xl mx-auto">
-        Have a project in mind? I'm always open to discussing new opportunities and collaborations.
+        Have a project in mind? I'm always open to discussing new opportunities
+        and collaborations.
       </p>
     </div>
 
@@ -32,11 +36,15 @@ const currentYear = new Date().getFullYear();
         <div>
           <h3 class="text-2xl mb-6">Get in Touch</h3>
           <p class="text-slate-300 mb-8">
-            Whether you have a question, a project proposal, or just want to say hello, feel free to reach out. I'll do my best to respond within 24 hours.
+            Whether you have a question, a project proposal, or just want to say
+            hello, feel free to reach out. I'll do my best to respond within 24
+            hours.
           </p>
         </div>
 
-        <div class="bg-white/10 border border-white/20 backdrop-blur rounded-3xl px-6 py-6 space-y-6">
+        <div
+          class="bg-white/10 border border-white/20 backdrop-blur rounded-3xl px-6 py-6 space-y-6"
+        >
           {
             contactOptions.map((option) => (
               <div class="flex items-center gap-4" role="listitem">
@@ -45,18 +53,16 @@ const currentYear = new Date().getFullYear();
                 </div>
                 <div>
                   <p class="text-sm text-slate-300">{option.label}</p>
-                  {
-                    option.href ? (
-                      <a
-                        href={option.href}
-                        class="text-lg hover:text-emerald-300 transition-colors"
-                      >
-                        {option.description}
-                      </a>
-                    ) : (
-                      <p class="text-lg">{option.description}</p>
-                    )
-                  }
+                  {option.href ? (
+                    <a
+                      href={option.href}
+                      class="text-lg hover:text-emerald-300 transition-colors"
+                    >
+                      {option.description}
+                    </a>
+                  ) : (
+                    <p class="text-lg">{option.description}</p>
+                  )}
                 </div>
               </div>
             ))
@@ -64,7 +70,9 @@ const currentYear = new Date().getFullYear();
         </div>
       </div>
 
-      <div class="bg-white/10 border border-white/20 backdrop-blur rounded-3xl px-6 py-6">
+      <div
+        class="bg-white/10 border border-white/20 backdrop-blur rounded-3xl px-6 py-6"
+      >
         <form method="post" class="space-y-4">
           <div>
             <label for="name" class="block text-sm mb-2">Name</label>
@@ -97,7 +105,7 @@ const currentYear = new Date().getFullYear();
               placeholder="Tell me about your project..."
               required
               class="w-full rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-slate-400 focus:border-emerald-400 focus:outline-none resize-none"
-            />
+            ></textarea>
           </div>
           <button
             type="submit"
@@ -112,7 +120,8 @@ const currentYear = new Date().getFullYear();
 
     <div class="mt-16 pt-8 border-t border-white/20 text-center">
       <p class="text-slate-300">
-        © {currentYear} Web Developer Portfolio. Built with Astro & Tailwind CSS.
+        {currentYear} Pedro T. Hernández de la Casa. Made with 💚 in Jaén. Built with
+        Astro & Tailwind CSS.
       </p>
     </div>
   </div>
