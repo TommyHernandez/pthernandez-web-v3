@@ -1,2 +1,27 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+
+:root {
+  --primary-font: 'Inter', sans-serif;
+  --mono-font: 'JetBrains Mono', monospace;
+  --bg-color: #0F172A;
+  --accent-color: #38BDF8;
+}
+
+h1, h2, h3 {
+  font-family: var(--primary-font);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+body {
+  font-family: 'Public Sans', sans-serif;
+  background-color: var(--bg-color);
+  color: #F8FAFC;
+  line-height: 1.6;
+}
+
+code {
+  font-family: var(--mono-font);
+  color: var(--accent-color);
+}

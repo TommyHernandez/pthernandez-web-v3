@@ -1,31 +1,43 @@
 ---
 import { ClientRouter } from "astro:transitions";
 ---
+
 <!doctype html>
 <html lang="es">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content="Portfolio de Pedro Tomás Hernández, Frontend Lead & Architect con +10 años de experiencia. Especialista en React, Design Systems y liderazgo de equipos de ingenier" />
-		<meta name="keywords" content="Frontend Lead, Architect, React, Design Systems" />
-		<title>Pedro T. Hernández</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <meta
+      name="description"
+      content="Portfolio de Pedro Tomás Hernández, Frontend Lead & Architect con +10 años de experiencia. Especialista en React, Design Systems y liderazgo de equipos de ingenier"
+    />
+    <meta
+      name="keywords"
+      content="Frontend Lead, Architect, React, Design Systems"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Pedro T. Hernández</title>
     <ClientRouter />
-
-	</head>
-	<body>
-		<slot />
-	</body>
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
 
 <style>
-	html,
-	body {
+  html,
+  body {
     box-sizing: border-box;
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
 </style>

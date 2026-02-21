@@ -1,8 +1,7 @@
 ---
-title: You dont know JS
+title: You Don't Know JS
 author: Kyle Simpson
 language: English
-slug: you-dont-know-js
 image: dontKnow.jpg
 ---
 

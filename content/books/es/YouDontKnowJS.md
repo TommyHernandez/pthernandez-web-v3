@@ -2,7 +2,6 @@
 title: You dont know JS
 author: Kyle Simpson
 language: Inglés
-slug: you-dont-know-js
 image: dontKnow.jpg
 ---
 
