@@ -1,16 +1,14 @@
 ---
 import { BookOpen, Quote } from "@lucide/astro";
-import type { CollectionEntry } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import type { BookSchema } from "../schemas/book";
 
 type BookEntry = CollectionEntry<"books">;
 type BookLike = BookEntry | BookSchema | { data?: BookSchema };
 
-type Props = {
-  books?: BookLike[];
-};
-
-const { books = [] } = Astro.props as Props;
+const allBooks = await getCollection("books");
+const currentLang = Astro.currentLocale || "en";
+const books = allBooks.filter((book) => book.id.includes(currentLang));
 
 // Helpers to support content entries (`getCollection`) and plain book objects.
 // Prefer `book.data.*` when available (Astro content entries expose frontmatter
@@ -36,8 +34,24 @@ const field = (
 const getLanguage = (book: BookLike) => field(book, "language", "");
 const getTitle = (book: BookLike) => field(book, "title", "Untitled");
 const getAuthor = (book: BookLike) => field(book, "author", "Unknown");
-const getCategory = (book: BookLike) => field(book, "category", "Book");
 const getImage = (book: BookLike) => field(book, "image", "default.png");
+const getBody = (book: BookLike): string => {
+  if (!book) return "";
+  if (typeof (book as BookEntry).body === "string") {
+    return (book as BookEntry).body;
+  }
+  return "";
+};
+
+const renderedBooks = await Promise.all(
+  books.map(async (book) => {
+    if (book && typeof (book as BookEntry).render === "function") {
+      const { Content } = await (book as BookEntry).render();
+      return Content;
+    }
+    return null;
+  }),
+);
 ---
 
 <section id="books" class="py-20 px-4 bg-white">
@@ -73,51 +87,213 @@ const getImage = (book: BookLike) => field(book, "image", "default.png");
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
       {
-        books.map((book, index) => (
-          <article
-            key={index}
-            class="group hover:shadow-xl transition-all duration-300 border-2 hover:border-emerald-200 overflow-hidden rounded-2xl bg-white"
-          >
-            <div class="relative h-48 overflow-hidden">
+        books.map((book, index) => {
+          const Content = renderedBooks[index];
+          return (
+            <article
+              key={index}
+              class="group relative h-[360px] overflow-hidden rounded-3xl bg-slate-950 text-white shadow-sm ring-1 ring-slate-200/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+            >
               <img
                 src={`/images/books/${getImage(book)}`}
                 alt={getTitle(book)}
                 loading="lazy"
                 onerror="this.onerror=null;this.src='/images/default.png';"
-                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
-            </div>
-
-            <div class="pt-6 pb-6 px-6">
-              <div class="flex items-center gap-2 mb-3">
-                <span class="inline-block px-3 py-1 bg-emerald-100 text-emerald-700 text-xs rounded-full">
-                  {getCategory(book)}
-                </span>
-                {getLanguage(book) && (
-                  <span class="inline-block px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded-full">
-                    {getLanguage(book)}
-                  </span>
-                )}
+              <div class="absolute inset-0 bg-linear-to-t from-slate-950/95 via-slate-900/40 to-slate-900/10" />
+              <div class="relative z-10 flex h-full flex-col justify-between p-6">
+                <div class="flex flex-wrap gap-2">
+                  {getLanguage(book) && (
+                    <span class="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white">
+                      {getLanguage(book)}
+                    </span>
+                  )}
+                </div>
+                <div>
+                  <h3 class="text-2xl font-semibold tracking-tight">
+                    {getTitle(book)}
+                  </h3>
+                  <p class="mt-1 text-sm text-slate-200">
+                    by {getAuthor(book)}
+                  </p>
+                  <div class="mt-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white">
+                    View details
+                  </div>
+                </div>
               </div>
-              <h3 class="text-xl mb-1 text-slate-900 group-hover:text-emerald-700 transition-colors">
-                {getTitle(book)}
-              </h3>
-              <p class="text-sm text-slate-500 mb-3">by {getAuthor(book)}</p>
-            </div>
-          </article>
-        ))
+              <button
+                type="button"
+                data-open-modal={`book-modal-${index}`}
+                aria-label={`Open details for ${getTitle(book)}`}
+                class="absolute inset-0 z-20"
+              />
+
+              <dialog
+                id={`book-modal-${index}`}
+                data-book-modal
+                class="book-modal"
+                aria-labelledby={`book-modal-title-${index}`}
+              >
+                <button
+                  type="button"
+                  data-close-modal
+                  aria-label="Close dialog"
+                  class="close-modal-button"
+                >
+                  X
+                </button>
+                <div class="grid gap-6 bg-white p-6 md:grid-cols-[280px,1fr] md:p-10 rounded-3xl max-h-[85vh] overflow-y-auto">
+                  <div class="overflow-hidden rounded-2xl bg-slate-100 shadow-lg shrink-0">
+                    <img
+                      src={`/images/books/${getImage(book)}`}
+                      alt={getTitle(book)}
+                      loading="lazy"
+                      onerror="this.onerror=null;this.src='/images/default.png';"
+                      class="h-full w-full object-cover"
+                    />
+                  </div>
+                  <div class="flex flex-col justify-start gap-6">
+                    <div>
+                      {getLanguage(book) && (
+                        <span class="inline-flex items-center rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700 mb-3">
+                          {getLanguage(book).toUpperCase()}
+                        </span>
+                      )}
+                      <h3
+                        id={`book-modal-title-${index}`}
+                        class="text-3xl font-bold text-slate-900 mt-2 leading-tight"
+                      >
+                        {getTitle(book)}
+                      </h3>
+                      <p class="text-sm text-slate-600 font-medium mt-2">
+                        by{" "}
+                        <span class="text-slate-800 font-semibold">
+                          {getAuthor(book)}
+                        </span>
+                      </p>
+                    </div>
+                    <div class="border-t border-slate-100 pt-4">
+                      <div class="prose prose-sm max-w-none text-slate-700 space-y-3">
+                        {Content ? (
+                          <Content />
+                        ) : (
+                          getBody(book) && (
+                            <p class="whitespace-pre-line">{getBody(book)}</p>
+                          )
+                        )}
+                      </div>
+                    </div>
+                    <div class="flex gap-3 pt-4 border-t border-slate-100">
+                      <button
+                        type="button"
+                        data-close-modal
+                        class="flex-1 inline-flex items-center justify-center rounded-full bg-emerald-600 hover:bg-emerald-700 px-4 py-3 text-sm font-semibold text-white transition-colors duration-200"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </dialog>
+            </article>
+          );
+        })
       }
     </div>
 
-    <div
+    <section
       class="mt-16 bg-linear-to-br from-slate-900 to-emerald-900 rounded-3xl p-12 text-center text-white"
     >
       <BookOpen class="w-16 h-16 mx-auto mb-6 text-emerald-300" />
       <h3 class="text-3xl mb-4">Currently Reading</h3>
       <p class="text-lg text-slate-300 mb-6 max-w-2xl mx-auto">
-        Always learning, always growing. I typically read 2-3 technical books
-        per quarter. Have a recommendation? I'd love to hear it!
+        Always learning, always growing. Now I´m reading "Threats: What Every
+        Engineer Should Learn From Star Wars" by Adam Shostack
       </p>
-    </div>
+    </section>
   </div>
 </section>
+
+<style>
+  .book-modal {
+    max-width: 900px;
+    width: 90vw;
+    max-height: 90vh;
+    padding: 0;
+    border: none;
+    border-radius: 1.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    margin-left: calc(50% - 450px);
+  }
+
+  .book-modal::backdrop {
+    background-color: rgba(0, 0, 0, 0.6);
+    animation: fadeIn 0.3s ease-in;
+  }
+
+  .book-modal[open] {
+    display: grid;
+    place-items: center;
+    animation: slideUp 0.3s ease-out;
+  }
+  .close-modal-button {
+    position: absolute;
+    right: 19px;
+    top: 12px;
+    cursor: pointer;
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<script>
+  const openButtons = document.querySelectorAll("[data-open-modal]");
+  const closeButtons = document.querySelectorAll("[data-close-modal]");
+  const dialogs = document.querySelectorAll("dialog[data-book-modal]");
+
+  openButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const id = button.getAttribute("data-open-modal");
+      if (!id) return;
+      const dialog = document.getElementById(id);
+      if (dialog instanceof HTMLDialogElement) {
+        dialog.showModal();
+      }
+    });
+  });
+
+  closeButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const dialog = button.closest("dialog");
+      if (dialog instanceof HTMLDialogElement) {
+        dialog.close();
+      }
+    });
+  });
+
+  dialogs.forEach((dialog) => {
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) {
+        dialog.close();
+      }
+    });
+  });
+</script>
