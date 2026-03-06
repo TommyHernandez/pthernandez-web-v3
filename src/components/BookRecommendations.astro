@@ -89,10 +89,12 @@ const renderedBooks = await Promise.all(
       {
         books.map((book, index) => {
           const Content = renderedBooks[index];
+          const modalId = `book-modal-${index}`;
+          const modalTitleId = `book-modal-title-${index}`;
           return (
             <article
               key={index}
-              class="cursor-pointer group relative h-90 overflow-hidden rounded-3xl bg-slate-950 text-white shadow-sm ring-1 ring-slate-200/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+              class="group relative h-90 overflow-hidden rounded-3xl bg-slate-950 text-white shadow-sm ring-1 ring-slate-200/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
             >
               <img
                 src={`/images/books/${getImage(book)}`}
@@ -117,23 +119,23 @@ const renderedBooks = await Promise.all(
                   <p class="mt-1 text-sm text-slate-200">
                     by {getAuthor(book)}
                   </p>
-                  <button class="cursor-pointer mt-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white">
+                  <span class="mt-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white">
                     View details
-                  </button>
+                  </span>
                 </div>
               </div>
               <button
                 type="button"
-                data-open-modal={`book-modal-${index}`}
+                data-open-modal={modalId}
                 aria-label={`Open details for ${getTitle(book)}`}
-                class="absolute inset-0 z-20"
+                class="absolute inset-0 z-20 cursor-pointer"
               />
 
               <dialog
-                id={`book-modal-${index}`}
+                id={modalId}
                 data-book-modal
                 class="book-modal"
-                aria-labelledby={`book-modal-title-${index}`}
+                aria-labelledby={modalTitleId}
               >
                 <button
                   type="button"
@@ -143,16 +145,7 @@ const renderedBooks = await Promise.all(
                 >
                   X
                 </button>
-                <div class="book-modal-content grid">
-                  <div class="book-modal__image overflow-hidden rounded-2xl bg-slate-100 shadow-lg shrink-0 md:sticky md:top-0">
-                    <img
-                      src={`/images/books/${getImage(book)}`}
-                      alt={getTitle(book)}
-                      loading="lazy"
-                      onerror="this.onerror=null;this.src='/images/default.png';"
-                      class="h-full w-full object-cover"
-                    />
-                  </div>
+                <div class="book-modal-content">
                   <div class="flex min-w-0 flex-col justify-start gap-6">
                     <div>
                       {getLanguage(book) && (
@@ -161,7 +154,7 @@ const renderedBooks = await Promise.all(
                         </span>
                       )}
                       <h3
-                        id={`book-modal-title-${index}`}
+                        id={modalTitleId}
                         class="text-3xl font-bold text-slate-900 mt-2 leading-tight"
                       >
                         {getTitle(book)}
@@ -194,6 +187,15 @@ const renderedBooks = await Promise.all(
                       </button>
                     </div>
                   </div>
+                  <div class="book-modal__image overflow-hidden rounded-2xl bg-slate-100 shadow-lg shrink-0">
+                    <img
+                      src={`/images/books/${getImage(book)}`}
+                      alt={getTitle(book)}
+                      loading="lazy"
+                      onerror="this.onerror=null;this.src='/images/default.png';"
+                      class="h-full w-full object-cover"
+                    />
+                  </div>
                 </div>
               </dialog>
             </article>
@@ -217,15 +219,14 @@ const renderedBooks = await Promise.all(
 
 <style>
   .book-modal {
-    max-width: 960px;
-    width: min(960px, calc(100vw - 2rem));
-    max-height: calc(100vh - 2rem);
-    border-radius: 8px;
+    width: min(960px, calc(100vw - 1.5rem));
+    max-height: calc(100vh - 1.5rem);
     padding: 0;
+    border: none;
+    border-radius: 1rem;
     overflow: visible;
     margin: auto;
-    background: #fff;
-    padding: 1rem;
+    background: transparent;
   }
 
   .book-modal::backdrop {
@@ -239,7 +240,15 @@ const renderedBooks = await Promise.all(
   }
 
   .book-modal-content {
-    gap: 0.8rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-height: calc(100vh - 1.5rem);
+    overflow-y: auto;
+    padding: 1.25rem;
+    border-radius: 1rem;
+    background: #fff;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
   }
 
   .close-modal-button {
@@ -265,26 +274,25 @@ const renderedBooks = await Promise.all(
   .close-modal-button:hover {
     background: rgb(241, 245, 249);
   }
-  .book-modal__image {
-    display: none;
-  }
-
-  @media (min-width: 640px) {
+  @media (min-width: 768px) {
     .book-modal {
-      width: calc(100vw - 1rem);
-      max-height: calc(100vh - 1rem);
+      width: min(960px, calc(100vw - 2rem));
+      max-height: calc(100vh - 2rem);
     }
 
     .book-modal-content {
-      grid-template-columns: 300px 1fr;
-      gap: 0.8rem;
+      grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
+      padding: 2rem;
     }
-    .book-modal__image {
-      display: block;
-    }
+
     .close-modal-button {
-      right: 0.75rem;
-      top: 0.75rem;
+      right: 1rem;
+      top: 1rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .close-modal-button {
       width: 2.75rem;
       height: 2.75rem;
     }
