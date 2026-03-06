@@ -92,7 +92,7 @@ const renderedBooks = await Promise.all(
           return (
             <article
               key={index}
-              class="group relative h-90 overflow-hidden rounded-3xl bg-slate-950 text-white shadow-sm ring-1 ring-slate-200/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+              class="cursor-pointer group relative h-90 overflow-hidden rounded-3xl bg-slate-950 text-white shadow-sm ring-1 ring-slate-200/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
             >
               <img
                 src={`/images/books/${getImage(book)}`}
@@ -117,9 +117,9 @@ const renderedBooks = await Promise.all(
                   <p class="mt-1 text-sm text-slate-200">
                     by {getAuthor(book)}
                   </p>
-                  <div class="mt-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white">
+                  <button class="cursor-pointer mt-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white">
                     View details
-                  </div>
+                  </button>
                 </div>
               </div>
               <button
@@ -143,8 +143,8 @@ const renderedBooks = await Promise.all(
                 >
                   X
                 </button>
-                <div class="grid gap-6 bg-white p-6 md:grid-cols-[280px,1fr] md:p-10 rounded-3xl max-h-[85vh] overflow-y-auto">
-                  <div class="overflow-hidden rounded-2xl bg-slate-100 shadow-lg shrink-0">
+                <div class="book-modal-content grid">
+                  <div class="book-modal__image overflow-hidden rounded-2xl bg-slate-100 shadow-lg shrink-0 md:sticky md:top-0">
                     <img
                       src={`/images/books/${getImage(book)}`}
                       alt={getTitle(book)}
@@ -153,7 +153,7 @@ const renderedBooks = await Promise.all(
                       class="h-full w-full object-cover"
                     />
                   </div>
-                  <div class="flex flex-col justify-start gap-6">
+                  <div class="flex min-w-0 flex-col justify-start gap-6">
                     <div>
                       {getLanguage(book) && (
                         <span class="inline-flex items-center rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700 mb-3">
@@ -188,7 +188,7 @@ const renderedBooks = await Promise.all(
                       <button
                         type="button"
                         data-close-modal
-                        class="flex-1 inline-flex items-center justify-center rounded-full bg-emerald-600 hover:bg-emerald-700 px-4 py-3 text-sm font-semibold text-white transition-colors duration-200"
+                        class="cursor-pointer flex-1 inline-flex items-center justify-center rounded-full bg-emerald-600 hover:bg-emerald-700 px-4 py-3 text-sm font-semibold text-white transition-colors duration-200"
                       >
                         Close
                       </button>
@@ -217,14 +217,15 @@ const renderedBooks = await Promise.all(
 
 <style>
   .book-modal {
-    max-width: 900px;
-    width: 90vw;
-    max-height: 90vh;
+    max-width: 960px;
+    width: min(960px, calc(100vw - 2rem));
+    max-height: calc(100vh - 2rem);
+    border-radius: 8px;
     padding: 0;
-    border: none;
-    border-radius: 1.5rem;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    margin-left: calc(50% - 450px);
+    overflow: visible;
+    margin: auto;
+    background: #fff;
+    padding: 1rem;
   }
 
   .book-modal::backdrop {
@@ -233,15 +234,60 @@ const renderedBooks = await Promise.all(
   }
 
   .book-modal[open] {
-    display: grid;
-    place-items: center;
+    display: block;
     animation: slideUp 0.3s ease-out;
   }
+
+  .book-modal-content {
+    gap: 0.8rem;
+  }
+
   .close-modal-button {
     position: absolute;
-    right: 19px;
-    top: 12px;
+    right: 1rem;
+    top: 1rem;
+    z-index: 20;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    background: rgba(255, 255, 255, 0.95);
+    color: rgb(30, 41, 59);
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1;
     cursor: pointer;
+  }
+
+  .close-modal-button:hover {
+    background: rgb(241, 245, 249);
+  }
+  .book-modal__image {
+    display: none;
+  }
+
+  @media (min-width: 640px) {
+    .book-modal {
+      width: calc(100vw - 1rem);
+      max-height: calc(100vh - 1rem);
+    }
+
+    .book-modal-content {
+      grid-template-columns: 300px 1fr;
+      gap: 0.8rem;
+    }
+    .book-modal__image {
+      display: block;
+    }
+    .close-modal-button {
+      right: 0.75rem;
+      top: 0.75rem;
+      width: 2.75rem;
+      height: 2.75rem;
+    }
   }
   @keyframes fadeIn {
     from {
