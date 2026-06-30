@@ -1,0 +1,25 @@
+---
+company: "IriusRisk"
+role: "Frontend Lead"
+period: "2023 - Present"
+theme: "Leadership & Technical Decision-Making"
+icon: "🚀"
+color: "from-emerald-600 to-teal-600"
+story: "Leading frontend architecture and making crucial technical decisions that shape product development."
+highlights:
+  - title: "Migrated from Webpack to Vite"
+    description: "Reduced build times by 70% and improved developer experience. After analyzing our bundle size and build performance, I championed the migration to Vite, which transformed our development workflow."
+    impact: "70% faster builds"
+  - title: "Created Custom Design System"
+    description: "Built a comprehensive design system from scratch to reduce technical debt and ensure consistency across the product. This eliminated duplicate code and accelerated feature development."
+    impact: "40% faster feature development"
+  - title: "Architectural Decisions"
+    description: "Introduced modern state management patterns and established coding standards that improved code quality and team collaboration."
+    impact: "Team productivity ↑"
+stack:
+  - "React"
+  - "TypeScript"
+  - "Vite"
+  - "Design Systems"
+keyLearning: "Leadership isn't just about managing people—it's about making strategic technical decisions that enable the entire team to succeed."
+---

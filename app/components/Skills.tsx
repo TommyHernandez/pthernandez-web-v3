@@ -9,24 +9,24 @@ import { useState } from "react";
 
 const INTENSITY_STYLES: Record<string, { badge: string; chip: string }> = {
   core: {
-    badge: "bg-[#D1E8E0] text-[#2D5C4F]",
-    chip: "bg-[#2D5C4F] text-white text-base px-5 py-3 shadow-sm",
+    badge: "bg-teal-soft text-teal-strong",
+    chip: "bg-teal-strong text-white text-base px-5 py-3 shadow-sm",
   },
   regular: {
-    badge: "bg-[#EDE9E0] text-[#44403C]",
-    chip: "bg-[#EDE9E0] text-[#44403C] text-sm px-4 py-2.5 border border-[rgba(28,25,23,0.08)]",
+    badge: "bg-surface-muted text-muted",
+    chip: "bg-surface-muted text-muted text-sm px-4 py-2.5 border border-ink/8",
   },
   exploring: {
-    badge: "bg-white text-[#78716C]",
-    chip: "bg-white text-[#78716C] text-xs px-4 py-2 border border-[rgba(28,25,23,0.1)]",
+    badge: "bg-white text-subtle",
+    chip: "bg-white text-subtle text-xs px-4 py-2 border border-ink/10",
   },
 };
 
 const CATEGORY_ACCENTS: Record<string, string> = {
-  react: "#D1E8E0",
-  frameworks: "#F5EBC2",
-  backend: "#F2DEDA",
-  tools: "#D4E3EF",
+  react: "var(--color-teal-soft)",
+  frameworks: "var(--color-amber-soft)",
+  backend: "var(--color-terracotta-soft)",
+  tools: "var(--color-blue-soft)",
 };
 
 export function Skills() {
@@ -88,23 +88,23 @@ export function Skills() {
   return (
     <section
       id="skills"
-      className="py-28 px-6 bg-[#F7F4EE] relative overflow-hidden"
+      className="py-28 px-6 bg-background relative overflow-hidden"
     >
       {/* Organic deco */}
       <div
         className="absolute bottom-[-60px] right-[-60px] w-80 h-80 opacity-[0.05]"
-        style={{ background: "#5B8A7A", borderRadius: "40% 60% 70% 30% / 50% 40% 60% 50%" }}
+        style={{ background: "var(--color-teal)", borderRadius: "40% 60% 70% 30% / 50% 40% 60% 50%" }}
       />
 
       <div className="max-w-5xl mx-auto relative z-10">
-        <p className="text-xs font-semibold tracking-widest uppercase text-[#78716C] mb-5">
+        <p className="text-xs font-semibold tracking-widest uppercase text-subtle mb-5">
           Technical Expertise
         </p>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-          <h2 className="text-5xl font-bold tracking-tight text-[#1C1917] leading-tight">
+          <h2 className="text-5xl font-bold tracking-tight text-ink leading-tight">
             Skills that deliver.
           </h2>
-          <p className="text-[#78716C] font-light max-w-xs md:text-right">
+          <p className="text-subtle font-light max-w-xs md:text-right">
             A decade of mastery across the modern web stack
           </p>
         </div>
@@ -118,7 +118,7 @@ export function Skills() {
             return (
               <div
                 key={key}
-                className="bg-white rounded-2xl overflow-hidden border border-[rgba(28,25,23,0.07)] hover:shadow-md transition-shadow duration-300"
+                className="bg-white rounded-2xl overflow-hidden border border-ink/7 hover:shadow-md transition-shadow duration-300"
               >
                 {/* Card accent strip */}
                 <div className="h-1.5 w-full" style={{ background: accent }} />
@@ -128,11 +128,11 @@ export function Skills() {
                       className="p-2.5 rounded-xl"
                       style={{ background: accent }}
                     >
-                      <Icon className="w-5 h-5 text-[#1C1917]" />
+                      <Icon className="w-5 h-5 text-ink" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold text-[#1C1917]">{data.title}</h3>
-                      <p className="text-xs text-[#78716C] font-light">{data.description}</p>
+                      <h3 className="text-lg font-bold text-ink">{data.title}</h3>
+                      <p className="text-xs text-subtle font-light">{data.description}</p>
                     </div>
                   </div>
                   <div className="flex flex-wrap gap-2.5">
@@ -164,24 +164,24 @@ export function Skills() {
         </div>
 
         {/* Legend */}
-        <div className="bg-white rounded-2xl p-6 border border-[rgba(28,25,23,0.07)] flex flex-wrap items-center gap-6">
-          <p className="text-xs font-semibold tracking-widest uppercase text-[#78716C] mr-2">
+        <div className="bg-white rounded-2xl p-6 border border-ink/7 flex flex-wrap items-center gap-6">
+          <p className="text-xs font-semibold tracking-widest uppercase text-subtle mr-2">
             Proficiency
           </p>
           {[
-            { label: "Core Expertise", color: "#2D5C4F", bg: "#2D5C4F" },
-            { label: "Regular", color: "#44403C", bg: "#EDE9E0" },
-            { label: "Exploring", color: "#78716C", bg: "#FFFFFF" },
+            { label: "Core Expertise", color: "var(--color-teal-strong)", bg: "var(--color-teal-strong)" },
+            { label: "Regular", color: "var(--color-muted)", bg: "var(--color-surface-muted)" },
+            { label: "Exploring", color: "var(--color-subtle)", bg: "var(--color-white)" },
           ].map((item) => (
             <div key={item.label} className="flex items-center gap-2">
               <span
-                className="w-3 h-3 rounded-full border border-[rgba(28,25,23,0.12)]"
+                className="w-3 h-3 rounded-full border border-ink/12"
                 style={{ background: item.bg }}
               />
-              <span className="text-sm text-[#44403C] font-light">{item.label}</span>
+              <span className="text-sm text-muted font-light">{item.label}</span>
             </div>
           ))}
-          <span className="text-xs text-[#78716C] font-light ml-auto italic">
+          <span className="text-xs text-subtle font-light ml-auto italic">
             Hover a skill to see years of experience
           </span>
         </div>

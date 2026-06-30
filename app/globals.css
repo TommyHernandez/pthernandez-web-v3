@@ -1,26 +1,98 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #F7F4EE;
+  --foreground: #1C1917;
 }
 
+/*
+ * Single source of truth for the portfolio color palette.
+ * Components must reference these tokens (bg-*, text-*, border-*, var(--color-*))
+ * instead of hardcoding hex values.
+ */
 @theme inline {
-  --color-background: var(--background);
+  /* Surfaces */
+  --color-background: var(--background); /* page background */
+  --color-surface: #FDFBF7;             /* raised cards */
+  --color-surface-muted: #EDE9E0;       /* chips, hover states */
+  --color-white: #FFFFFF;
+
+  /* Text & ink (ink doubles as dark button surface and border base) */
   --color-foreground: var(--foreground);
+  --color-ink: var(--foreground);       /* primary text / dark surfaces */
+  --color-ink-hover: #2D2923;           /* dark button hover */
+  --color-muted: #44403C;               /* secondary text */
+  --color-subtle: #78716C;              /* tertiary text */
+  --color-placeholder: #B8B0A6;         /* input placeholders */
+
+  /* Accent — teal/green */
+  --color-teal: #5B8A7A;
+  --color-teal-strong: #2D5C4F;
+  --color-teal-soft: #D1E8E0;
+
+  /* Accent — amber/gold */
+  --color-amber: #C9A736;
+  --color-amber-strong: #6B5810;
+  --color-amber-soft: #F5EBC2;
+
+  /* Accent — terracotta */
+  --color-terracotta: #C2857A;
+  --color-terracotta-strong: #7A3D35;
+  --color-terracotta-soft: #F2DEDA;
+
+  /* Accent — blue */
+  --color-blue: #5B8AAA;
+  --color-blue-strong: #2B4F6A;
+  --color-blue-soft: #D4E3EF;
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Hero availability status — animated gradient underline */
+.availability-status {
+  position: relative;
+  display: inline-block;
+}
+
+.availability-status::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 2px;
+  width: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-teal) 25%,
+    var(--color-teal-strong) 50%,
+    var(--color-teal) 75%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: availability-underline 3s ease-in-out infinite;
+}
+
+@keyframes availability-underline {
+  0%,
+  100% {
+    background-position: 200% 0;
+  }
+  50% {
+    background-position: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .availability-status::after {
+    animation: none;
+  }
 }
