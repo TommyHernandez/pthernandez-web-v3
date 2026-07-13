@@ -96,3 +96,8 @@ body {
     animation: none;
   }
 }
+
+.experience-blob {
+  background: var(--color-teal);
+  border-radius: 60% 40% 50% 50% / 50% 60% 40% 50%;
+}

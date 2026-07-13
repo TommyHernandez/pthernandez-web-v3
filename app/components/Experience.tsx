@@ -36,25 +36,32 @@ export function Experience() {
       period: "2021 – Present",
       icon: Rocket,
       story:
-        "I led the migration to React, helped build the front-end team from scratch, and led and mentored it for four years; the team eventually grew to 13 people, including front-end and full-stack developers. I was also able to contribute to the development of some of the product’s most important features, which had a significant impact on customers. One of these was related to AI.",
+        "I led the creation of the frontend team, growing it from just me to 12 people — 6 pure frontend engineers I helped hire and 6 full-stack developers. We changed the application's UI while features kept shipping: for a time both UIs coexisted, with one framework embedded inside another. I set the foundations of the project — patterns, architecture, best practices, and pipelines — always focused on scalability, performance, and accessibility. We've also been embedding AI into our workflows since its rise, and even delivered a highly requested AI feature during a hackathon without being part of the AI team.",
       highlights: [
         {
-          title: "Migrated Webpack → Vite",
+          title: "Built & Led the Team",
           description:
-            "Championed and executed the migration to Vite, transforming our development workflow and significantly reducing feedback loops.",
+            "Grew the frontend team from just me to 12 people — helping hire 6 frontend engineers and mentoring alongside 6 full-stack developers.",
         },
         {
-          title: "Custom Design System",
+          title: "Architecture & Foundations",
           description:
-            "Built a comprehensive design system from scratch to eliminate duplicate code and accelerate feature development across the product.",
+            "Set the project's foundations — patterns, architecture, best practices, and pipelines — and led a live UI migration with both frameworks coexisting while features kept shipping.",
         },
         {
-          title: "Architectural Standards",
+          title: "AI Innovation",
           description:
-            "Introduced modern state management patterns and coding standards that improved quality and team collaboration.",
+            "Embedded AI into our workflows early and delivered a highly requested AI feature during a hackathon, without being part of the AI team.",
         },
       ],
-      stack: ["React", "TypeScript", "Vite", "Design Systems"],
+      stack: [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Design Systems",
+        "Zustand",
+        "Performance Optimization",
+      ],
       keyLearning:
         "Leadership is about making strategic technical decisions that enable the entire team to succeed.",
     },
@@ -87,30 +94,58 @@ export function Experience() {
         "Scale isn't just about users — it's about creating systems that multiple teams can evolve without stepping on each other.",
     },
     {
-      company: "BestSecret & Accenture",
-      role: "Fullstack Developer & Mentor",
-      period: "2018 – 2019",
-      icon: Users,
+      company: "BestSecret",
+      role: "Fullstack Developer",
+      period: "Oct 2019 – Aug 2020",
+      icon: TrendingUp,
       story:
-        "Proved my adaptability across different tech stacks while giving back through mentorship.",
+        "My first experience with a hybrid migration for a high-traffic online retailer, where one framework lives inside another. In this case we moved from Hybris to Vue. I worked with agile methodologies.",
       highlights: [
-        {
-          title: "Multi-Stack Mastery",
-          description:
-            "Seamlessly transitioned between Vue.js at BestSecret for e-commerce features, React for internal tools, and Flutter for mobile experiments.",
-        },
-        {
-          title: "Mentoring",
-          description:
-            "Mentored junior developers and bootcamp students at Accenture, helping them transition into professional roles.",
-        },
         {
           title: "E-commerce Excellence",
           description:
             "Built critical e-commerce features handling thousands of transactions, from product catalogs to checkout flows.",
         },
+        {
+          title: "Frontend with Vue.js",
+          description:
+            "Developed customer-facing features with Vue.js, focusing on smooth shopping experiences and reliable checkout.",
+        },
+        {
+          title: "High-Traffic Reliability",
+          description:
+            "Worked on features that had to stay fast and dependable under the demands of a busy e-commerce platform.",
+        },
       ],
-      stack: ["Vue.js", "React", "Flutter", "PHP"],
+      stack: ["Vue.js", "JavaScript", "Typescript", "UX", "Flutter"],
+      keyLearning:
+        "In e-commerce, reliability and speed at checkout translate directly into real business impact.",
+    },
+    {
+      company: "Accenture",
+      role: "Fullstack Developer & Mentor",
+      period: "Jan 2018 – Oct 2019",
+      icon: Users,
+      story:
+        "I developed frontend features with a high bar for reliability and detail, becoming the team's go-to person for technical decisions. We worked with agile methodologies and an extremely high standard for the finish and performance of the product.",
+      highlights: [
+        {
+          title: "Multi-Stack Mastery",
+          description:
+            "Seamlessly transitioned between React for internal tools and Flutter for mobile experiments, adapting to each project's needs.",
+        },
+        {
+          title: "Mentoring",
+          description:
+            "Mentored junior developers and bootcamp students, helping them transition into professional roles.",
+        },
+        {
+          title: "Cross-Project Delivery",
+          description:
+            "Delivered features across varied client projects, ramping up quickly on unfamiliar codebases and stacks.",
+        },
+      ],
+      stack: ["React", "JavaScript", "Jquery", "HTML", "CSS", "Bootstrap"],
       keyLearning:
         "The best developers aren't loyal to a single framework — they choose the right tool and help others grow.",
     },
@@ -138,7 +173,15 @@ export function Experience() {
             "Witnessed and participated in the shift from jQuery to modern frameworks, understanding both paradigms deeply.",
         },
       ],
-      stack: ["PHP", "MySQL", "JavaScript", "jQuery"],
+      stack: [
+        "PHP",
+        "MySQL",
+        "JavaScript",
+        "Bootstrap",
+        "HTML",
+        "CSS",
+        "jQuery",
+      ],
       keyLearning:
         "Understanding the backend makes you a better frontend developer. Knowing the server helps you build better interfaces.",
     },
@@ -149,13 +192,7 @@ export function Experience() {
       id="experience"
       className="py-28 px-6 bg-white relative overflow-hidden"
     >
-      <div
-        className="absolute -top-10 -left-10 w-72 h-72 opacity-[0.04]"
-        style={{
-          background: "var(--color-teal)",
-          borderRadius: "60% 40% 50% 50% / 50% 60% 40% 50%",
-        }}
-      />
+      <div className="experience-blob absolute -top-10 -left-10 w-72 h-72 opacity-[0.04]" />
 
       <div className="max-w-5xl mx-auto relative">
         <p className="text-xs font-semibold tracking-widest uppercase text-subtle mb-5">
@@ -177,7 +214,7 @@ export function Experience() {
           <div className="space-y-10">
             {journey.map((exp, index) => {
               const Icon = exp.icon;
-              const accent = ROLE_ACCENTS[index];
+              const accent = ROLE_ACCENTS[index % ROLE_ACCENTS.length];
               return (
                 <div key={index} className="relative flex gap-8">
                   {/* Timeline dot */}
