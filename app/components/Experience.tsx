@@ -3,7 +3,6 @@ import {
   LuTrendingUp as TrendingUp,
   LuUsers as Users,
   LuCode as Code,
-  LuArrowRight as ArrowRight,
 } from "react-icons/lu";
 
 const ROLE_ACCENTS = [
@@ -35,7 +34,6 @@ export function Experience() {
       company: "IriusRisk",
       role: "Frontend Lead",
       period: "2021 – Present",
-      theme: "Leadership & Technical Decision-Making",
       icon: Rocket,
       story:
         "I led the migration to React, helped build the front-end team from scratch, and led and mentored it for four years; the team eventually grew to 13 people, including front-end and full-stack developers. I was also able to contribute to the development of some of the product’s most important features, which had a significant impact on customers. One of these was related to AI.",
@@ -64,7 +62,6 @@ export function Experience() {
       company: "Unit4",
       role: "Senior Frontend Developer",
       period: "2020 – 2021",
-      theme: "Scalability & Enterprise Architecture",
       icon: TrendingUp,
       story:
         "Mastered the art of building scalable applications for complex corporate environments.",
@@ -93,7 +90,6 @@ export function Experience() {
       company: "BestSecret & Accenture",
       role: "Fullstack Developer & Mentor",
       period: "2018 – 2019",
-      theme: "Versatility & Knowledge Sharing",
       icon: Users,
       story:
         "Proved my adaptability across different tech stacks while giving back through mentorship.",
@@ -122,7 +118,6 @@ export function Experience() {
       company: "Arminet",
       role: "Fullstack Developer",
       period: "2015 – 2018",
-      theme: "Fullstack Roots & Foundation",
       icon: Code,
       story:
         "Where it all began — building complete web solutions from database to interface.",
@@ -155,7 +150,7 @@ export function Experience() {
       className="py-28 px-6 bg-white relative overflow-hidden"
     >
       <div
-        className="absolute top-[-40px] left-[-40px] w-72 h-72 opacity-[0.04]"
+        className="absolute -top-10 -left-10 w-72 h-72 opacity-[0.04]"
         style={{
           background: "var(--color-teal)",
           borderRadius: "60% 40% 50% 50% / 50% 60% 40% 50%",
@@ -188,7 +183,7 @@ export function Experience() {
                   {/* Timeline dot */}
                   <div className="hidden md:flex flex-col items-center">
                     <div
-                      className="w-[22px] h-[22px] rounded-full border-2 border-white shadow-sm flex-shrink-0 mt-5"
+                      className="w-5.5 h-5.5 rounded-full border-2 border-white shadow-sm shrink-0 mt-5"
                       style={{ background: accent.dot }}
                     />
                   </div>
@@ -221,12 +216,6 @@ export function Experience() {
                             </p>
                           </div>
                         </div>
-                        <span
-                          className="self-start text-xs font-semibold px-3 py-1.5 rounded-full"
-                          style={{ background: accent.bg, color: accent.text }}
-                        >
-                          {exp.theme}
-                        </span>
                       </div>
 
                       <p className="text-muted italic text-sm font-light leading-relaxed mb-6">
