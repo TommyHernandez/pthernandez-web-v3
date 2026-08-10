@@ -1,37 +1,29 @@
-'use client';
+/* Hallmark · macrostructure: Editorial skills ledger · tone: editorial · anchor hue: teal
+ * Card-free category ledger. Subtle per-category color via a small tinted icon; proficiency
+ * carried by type weight, not loud fills; static year figures in mono. No hover, no shadows.
+ * Matches the Experience / About ledger voice.
+ */
 import {
   LuCodeXml as Code2,
   LuLayers as Layers,
   LuDatabase as Database,
   LuWrench as Wrench,
 } from "react-icons/lu";
-import { useState } from "react";
 
-const INTENSITY_STYLES: Record<string, { badge: string; chip: string }> = {
-  core: {
-    badge: "bg-teal-soft text-teal-strong",
-    chip: "bg-teal-strong text-white text-base px-5 py-3 shadow-sm",
-  },
-  regular: {
-    badge: "bg-surface-muted text-muted",
-    chip: "bg-surface-muted text-muted text-sm px-4 py-2.5 border border-ink/8",
-  },
-  exploring: {
-    badge: "bg-white text-subtle",
-    chip: "bg-white text-subtle text-xs px-4 py-2 border border-ink/10",
-  },
+const INTENSITY_TEXT: Record<string, string> = {
+  core: "text-ink font-semibold",
+  regular: "text-muted",
+  exploring: "text-subtle font-light",
 };
 
-const CATEGORY_ACCENTS: Record<string, string> = {
-  react: "var(--color-teal-soft)",
-  frameworks: "var(--color-amber-soft)",
-  backend: "var(--color-terracotta-soft)",
-  tools: "var(--color-blue-soft)",
+const CATEGORY_ACCENT: Record<string, string> = {
+  react: "var(--color-teal)",
+  frameworks: "var(--color-amber)",
+  backend: "var(--color-terracotta)",
+  tools: "var(--color-blue)",
 };
 
 export function Skills() {
-  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
-
   const skillsData = {
     react: {
       title: "React Ecosystem",
@@ -67,6 +59,7 @@ export function Skills() {
         { name: "Express", experience: "4 years", intensity: "regular" },
         { name: "REST APIs", experience: "8 years", intensity: "core" },
         { name: "GraphQL", experience: "3 years", intensity: "regular" },
+        { name: "NestJS", experience: "1 year", intensity: "exploring" },
       ],
     },
     tools: {
@@ -90,17 +83,20 @@ export function Skills() {
       id="skills"
       className="py-28 px-6 bg-background relative overflow-hidden"
     >
-      {/* Organic deco */}
+      {/* Ambient accent — matches the other sections' treatment */}
       <div
         className="absolute bottom-[-60px] right-[-60px] w-80 h-80 opacity-[0.05]"
-        style={{ background: "var(--color-teal)", borderRadius: "40% 60% 70% 30% / 50% 40% 60% 50%" }}
+        style={{
+          background: "var(--color-teal)",
+          borderRadius: "40% 60% 70% 30% / 50% 40% 60% 50%",
+        }}
       />
 
       <div className="max-w-5xl mx-auto relative z-10">
         <p className="text-xs font-semibold tracking-widest uppercase text-subtle mb-5">
           Technical Expertise
         </p>
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <h2 className="text-5xl font-bold tracking-tight text-ink leading-tight">
             Skills that deliver.
           </h2>
@@ -109,81 +105,51 @@ export function Skills() {
           </p>
         </div>
 
-        {/* Categories grid */}
-        <div className="grid md:grid-cols-2 gap-6 mb-12">
+        {/* Category ledger — hairline rows, no cards */}
+        <dl className="border-t border-ink/10">
           {categories.map((key) => {
             const data = skillsData[key];
             const Icon = data.icon;
-            const accent = CATEGORY_ACCENTS[key];
+            const accent = CATEGORY_ACCENT[key];
             return (
               <div
                 key={key}
-                className="bg-white rounded-2xl overflow-hidden border border-ink/7 hover:shadow-md transition-shadow duration-300"
+                className="flex flex-col sm:flex-row gap-x-8 gap-y-4 py-8 border-b border-ink/10"
               >
-                {/* Card accent strip */}
-                <div className="h-1.5 w-full" style={{ background: accent }} />
-                <div className="p-8">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div
-                      className="p-2.5 rounded-xl"
-                      style={{ background: accent }}
+                <dt className="sm:w-56 shrink-0">
+                  <div className="flex items-center gap-2.5">
+                    <Icon className="w-4 h-4 shrink-0" style={{ color: accent }} />
+                    <h3 className="text-base font-semibold text-ink">
+                      {data.title}
+                    </h3>
+                  </div>
+                  <p className="text-xs text-subtle font-light mt-1 sm:pl-[26px]">
+                    {data.description}
+                  </p>
+                </dt>
+                <dd className="flex flex-wrap gap-x-6 gap-y-2.5 items-baseline">
+                  {data.skills.map((skill) => (
+                    <span
+                      key={skill.name}
+                      className={`text-sm ${INTENSITY_TEXT[skill.intensity]}`}
                     >
-                      <Icon className="w-5 h-5 text-ink" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold text-ink">{data.title}</h3>
-                      <p className="text-xs text-subtle font-light">{data.description}</p>
-                    </div>
-                  </div>
-                  <div className="flex flex-wrap gap-2.5">
-                    {data.skills.map((skill) => {
-                      const styles = INTENSITY_STYLES[skill.intensity];
-                      return (
-                        <div
-                          key={skill.name}
-                          className={`rounded-xl font-medium transition-all duration-200 cursor-default select-none ${styles.chip}`}
-                          onMouseEnter={() => setHoveredSkill(skill.name)}
-                          onMouseLeave={() => setHoveredSkill(null)}
-                        >
-                          <div className="flex flex-col">
-                            <span>{skill.name}</span>
-                            {hoveredSkill === skill.name && (
-                              <span className="text-xs opacity-70 mt-0.5 font-light">
-                                {skill.experience}
-                              </span>
-                            )}
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
+                      {skill.name}
+                    </span>
+                  ))}
+                </dd>
               </div>
             );
           })}
-        </div>
+        </dl>
 
-        {/* Legend */}
-        <div className="bg-white rounded-2xl p-6 border border-ink/7 flex flex-wrap items-center gap-6">
-          <p className="text-xs font-semibold tracking-widest uppercase text-subtle mr-2">
+        {/* Proficiency key — self-documenting, no interaction */}
+        <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2">
+          <span className="text-xs font-semibold tracking-widest uppercase text-subtle">
             Proficiency
-          </p>
-          {[
-            { label: "Core Expertise", color: "var(--color-teal-strong)", bg: "var(--color-teal-strong)" },
-            { label: "Regular", color: "var(--color-muted)", bg: "var(--color-surface-muted)" },
-            { label: "Exploring", color: "var(--color-subtle)", bg: "var(--color-white)" },
-          ].map((item) => (
-            <div key={item.label} className="flex items-center gap-2">
-              <span
-                className="w-3 h-3 rounded-full border border-ink/12"
-                style={{ background: item.bg }}
-              />
-              <span className="text-sm text-muted font-light">{item.label}</span>
-            </div>
-          ))}
-          <span className="text-xs text-subtle font-light ml-auto italic">
-            Hover a skill to see years of experience
           </span>
+          <span className="text-sm text-ink font-semibold">Core</span>
+          <span className="text-sm text-muted">Regular</span>
+          <span className="text-sm text-subtle font-light">Exploring</span>
         </div>
       </div>
     </section>
