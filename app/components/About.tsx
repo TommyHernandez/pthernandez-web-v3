@@ -66,9 +66,12 @@ export function About() {
           </p>
         </div>
 
-        <dl className="grid grid-cols-2 md:grid-cols-4 gap-px bg-ink/10 border border-ink/10 mb-20">
+        <dl className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-ink/10 border border-ink/10 mb-20">
           {stats.map((stat) => (
-            <div key={stat.label} className="bg-white py-6 px-5">
+            <div
+              key={stat.label}
+              className="bg-white py-6 px-5 flex flex-col justify-center"
+            >
               <dt className="text-4xl font-bold text-ink font-mono tabular-nums leading-none mb-2">
                 {stat.value}
               </dt>
