@@ -14,7 +14,7 @@ export function BookRecommendations() {
       className="py-28 px-6 bg-background relative overflow-hidden"
     >
       <div
-        className="absolute bottom-[-60px] left-[-60px] w-72 h-72 opacity-[0.04]"
+        className="absolute -bottom-15 -left-15 w-72 h-72 opacity-[0.04]"
         style={{
           background: "var(--color-amber)",
           borderRadius: "50% 40% 60% 50% / 60% 50% 40% 50%",
@@ -33,8 +33,8 @@ export function BookRecommendations() {
 
         <div className="border-l-2 border-teal pl-6 py-1 mb-16">
           <p className="text-lg text-muted italic font-light leading-snug">
-            "A developer who doesn't read books is like a carpenter who doesn't
-            sharpen their tools."
+            &quot;A developer who doesn't read books is like a carpenter who
+            doesn't sharpen their tools.&quot;
           </p>
           <p className="text-sm text-subtle mt-2 font-light">
             Reading isn't just learning — it's investing in your craft.

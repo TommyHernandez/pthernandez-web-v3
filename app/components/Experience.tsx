@@ -16,7 +16,7 @@ export function Experience() {
       period: "2021 – Present",
       icon: Rocket,
       story:
-        "I led the creation of the frontend team, growing it from just me to 12 people — 6 pure frontend engineers I helped hire and 6 full-stack developers. We changed the application’s UI while features kept shipping: for a time both UIs coexisted, with one framework embedded inside another. I set the foundations of the project — patterns, architecture, best practices, and pipelines — always focused on scalability, performance, and accessibility. We’ve also been embedding AI into our workflows since its rise, and even delivered a highly requested AI feature during a hackathon without being part of the AI team.",
+        "I led the creation of the frontend team, growing it from just me to 12 people. 6 pure frontend engineers I helped to hire and 6 full-stack developers. We changed the application’s UI while features kept shipping: for a time both UIs coexisted, with one framework embedded inside another. I set the foundations of the project — patterns, architecture, best practices, and pipelines — always focused on scalability, performance, and accessibility. We’ve also been embedding AI into our workflows since its rise, and even delivered a highly requested AI feature during a hackathon without being part of the AI team.",
       highlights: [
         {
           title: "Built & Led the Team",
@@ -259,7 +259,7 @@ export function Experience() {
                         key={hIdx}
                         className="flex gap-4 py-4 border-b border-ink/10"
                       >
-                        <span className="w-1.5 h-1.5 rounded-[2px] bg-teal shrink-0 mt-2" />
+                        <span className="w-1.5 h-1.5 rounded-xs bg-teal shrink-0 mt-2" />
                         <div className="flex flex-col sm:flex-row sm:gap-4">
                           <dt className="text-sm font-semibold text-ink sm:w-52 shrink-0 mb-1 sm:mb-0">
                             {h.title}

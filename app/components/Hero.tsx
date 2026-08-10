@@ -14,14 +14,14 @@ export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden bg-background">
       <div
-        className="absolute -top-20 right-[-80px] w-[500px] h-[500px] opacity-[0.06]"
+        className="absolute -top-20 -right-20 w-125 h-125 opacity-[0.06]"
         style={{
           background: "var(--color-teal)",
           borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%",
         }}
       />
       <div
-        className="absolute -bottom-15 left-[-60px] w-[360px] h-[360px] opacity-[0.05]"
+        className="absolute -bottom-15 -left-15 w-90 h-90 opacity-[0.05]"
         style={{
           background: "var(--color-terracotta)",
           borderRadius: "40% 60% 70% 30% / 40% 50% 60% 50%",

@@ -15,7 +15,7 @@ export function Contact() {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
     alert("Thank you for your message! I'll get back to you soon.");
@@ -29,7 +29,7 @@ export function Contact() {
     >
       {/* Organic deco */}
       <div
-        className="absolute top-[-60px] right-[-60px] w-80 h-80 opacity-[0.05]"
+        className="absolute -top-15 -right-15 w-80 h-80 opacity-[0.05]"
         style={{
           background: "var(--color-teal)",
           borderRadius: "60% 40% 30% 70% / 50% 60% 40% 50%",
@@ -64,21 +64,21 @@ export function Contact() {
 
               <div className="space-y-5">
                 <div className="flex items-center gap-4">
-                  <div className="p-2.5 bg-teal-soft rounded-xl flex-shrink-0">
+                  <div className="p-2.5 bg-teal-soft rounded-xl shrink-0">
                     <Mail className="w-4 h-4 text-teal-strong" />
                   </div>
                   <div>
                     <p className="text-xs text-subtle font-light">Email</p>
                     <a
-                      href="mailto:your.email@example.com"
+                      href="mailto:hello@pedrotomas.dev"
                       className="text-sm font-semibold text-ink hover:text-teal transition-colors"
                     >
-                      your.email@example.com
+                      hello@pedrotomas.dev
                     </a>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="p-2.5 bg-amber-soft rounded-xl flex-shrink-0">
+                  <div className="p-2.5 bg-amber-soft rounded-xl shrink-0">
                     <MapPin className="w-4 h-4 text-amber-strong" />
                   </div>
                   <div>
@@ -98,7 +98,7 @@ export function Contact() {
               </p>
               <div className="flex gap-3">
                 <a
-                  href="https://github.com"
+                  href="https://github.com/tommyhernandez"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-4 py-2.5 bg-background border border-ink/8 rounded-xl text-sm font-semibold text-ink hover:bg-surface-muted transition-colors"
@@ -107,7 +107,7 @@ export function Contact() {
                   GitHub
                 </a>
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/pedrothdc/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-4 py-2.5 bg-background border border-ink/8 rounded-xl text-sm font-semibold text-ink hover:bg-surface-muted transition-colors"

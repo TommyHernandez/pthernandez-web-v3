@@ -60,7 +60,8 @@ export function About() {
           <p className="text-lg text-muted leading-relaxed font-light">
             React is my superpower, but I&rsquo;m fluent across Vue, Angular,
             PHP, and vanilla JavaScript. I&rsquo;ve shipped products at scale
-            for <span className="font-semibold text-ink">BestSecret</span>,{" "}
+            for <span className="font-semibold text-ink">IriusRisk</span>,{" "}
+            <span className="font-semibold text-ink">BestSecret</span>,{" "}
             <span className="font-semibold text-ink">SEAT</span>, and
             enterprises with millions of daily users.
           </p>
