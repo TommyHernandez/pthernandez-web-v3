@@ -7,13 +7,13 @@ import { Skills } from "./components/Skills";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background">
+    <section className="min-h-screen bg-background">
       <Hero />
       <About />
       <Skills />
       <Experience />
       <BookRecommendations />
       <Contact />
-    </div>
+    </section>
   );
 }

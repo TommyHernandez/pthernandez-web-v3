@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import {
   LuMail as Mail,
   LuMapPin as MapPin,
@@ -7,9 +7,14 @@ import {
   LuLinkedin as Linkedin,
 } from "react-icons/lu";
 import { useState } from "react";
+import { Footer } from "./Footer";
 
 export function Contact() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,11 +24,17 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-28 px-6 bg-background relative overflow-hidden">
+    <section
+      id="contact"
+      className="py-28 px-6 bg-white relative overflow-hidden"
+    >
       {/* Organic deco */}
       <div
         className="absolute top-[-60px] right-[-60px] w-80 h-80 opacity-[0.05]"
-        style={{ background: "var(--color-teal)", borderRadius: "60% 40% 30% 70% / 50% 60% 40% 50%" }}
+        style={{
+          background: "var(--color-teal)",
+          borderRadius: "60% 40% 30% 70% / 50% 60% 40% 50%",
+        }}
       />
 
       <div className="max-w-5xl mx-auto relative">
@@ -42,11 +53,14 @@ export function Contact() {
         <div className="grid md:grid-cols-2 gap-8">
           {/* Info panel */}
           <div className="flex flex-col gap-6">
-            <div className="bg-white rounded-2xl p-8 border border-ink/7">
-              <h3 className="text-lg font-bold text-ink mb-4">Reach out directly</h3>
+            <div className="bg-surface rounded-2xl p-8 border border-ink/7">
+              <h3 className="text-lg font-bold text-ink mb-4">
+                Reach out directly
+              </h3>
               <p className="text-muted font-light leading-relaxed mb-8 text-sm">
-                Whether you have a project proposal, a question, or just want to say hello —
-                feel free to reach out. I'll do my best to respond within 24 hours.
+                Whether you have a project proposal, a question, or just want to
+                say hello — feel free to reach out. I'll do my best to respond
+                within 24 hours.
               </p>
 
               <div className="space-y-5">
@@ -79,7 +93,7 @@ export function Contact() {
             </div>
 
             {/* Social */}
-            <div className="bg-white rounded-2xl p-6 border border-ink/7">
+            <div className="bg-surface rounded-2xl p-6 border border-ink/7">
               <p className="text-xs font-semibold text-subtle uppercase tracking-widest mb-4">
                 Social
               </p>
@@ -107,7 +121,7 @@ export function Contact() {
           </div>
 
           {/* Form */}
-          <div className="bg-white rounded-2xl p-8 border border-ink/7">
+          <div className="bg-surface rounded-2xl p-8 border border-ink/7">
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
                 <label
@@ -121,7 +135,9 @@ export function Contact() {
                   type="text"
                   placeholder="Your name"
                   value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
                   required
                   className="w-full px-4 py-3 bg-background border border-ink/10 rounded-xl text-sm text-ink placeholder:text-placeholder focus:outline-none focus:ring-2 focus:ring-teal/30 focus:border-teal transition-all"
                 />
@@ -138,7 +154,9 @@ export function Contact() {
                   type="email"
                   placeholder="your.email@example.com"
                   value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
                   required
                   className="w-full px-4 py-3 bg-background border border-ink/10 rounded-xl text-sm text-ink placeholder:text-placeholder focus:outline-none focus:ring-2 focus:ring-teal/30 focus:border-teal transition-all"
                 />
@@ -155,7 +173,9 @@ export function Contact() {
                   placeholder="Tell me about your project..."
                   rows={5}
                   value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, message: e.target.value })
+                  }
                   required
                   className="w-full px-4 py-3 bg-background border border-ink/10 rounded-xl text-sm text-ink placeholder:text-placeholder focus:outline-none focus:ring-2 focus:ring-teal/30 focus:border-teal transition-all resize-none"
                 />
@@ -171,15 +191,7 @@ export function Contact() {
           </div>
         </div>
 
-        {/* Footer */}
-        <div className="mt-16 pt-8 border-t border-ink/8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-subtle font-light">
-            © {new Date().getFullYear()} Web Developer Portfolio. Built with React & Tailwind CSS.
-          </p>
-          <p className="text-xs text-placeholder font-light">
-            Crafted with care — and a lot of TypeScript.
-          </p>
-        </div>
+        <Footer />
       </div>
     </section>
   );

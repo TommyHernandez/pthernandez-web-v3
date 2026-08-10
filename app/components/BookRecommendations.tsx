@@ -11,7 +11,7 @@ export function BookRecommendations() {
   return (
     <section
       id="books"
-      className="py-28 px-6 bg-white relative overflow-hidden"
+      className="py-28 px-6 bg-background relative overflow-hidden"
     >
       <div
         className="absolute bottom-[-60px] left-[-60px] w-72 h-72 opacity-[0.04]"
@@ -45,7 +45,7 @@ export function BookRecommendations() {
           {books.map((book) => (
             <div
               key={book.slug}
-              className="bg-surface rounded-2xl overflow-hidden border border-ink/7 hover:shadow-md transition-shadow duration-300 group flex flex-col"
+              className="bg-white rounded-2xl overflow-hidden border border-ink/7 hover:shadow-md transition-shadow duration-300 group flex flex-col"
             >
               {/* Book image */}
               <div className="relative h-44 overflow-hidden bg-surface-muted">
@@ -94,7 +94,7 @@ export function BookRecommendations() {
           ))}
         </div>
 
-        <div className="bg-background rounded-2xl p-10 border border-ink/7 flex flex-col md:flex-row items-center justify-between gap-8">
+        <div className="bg-white rounded-2xl p-10 border border-ink/7 flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex items-start gap-5">
             <div className="p-3 bg-teal-soft rounded-xl shrink-0">
               <BookOpen className="w-6 h-6 text-teal-strong" />

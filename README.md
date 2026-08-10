@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pedro Tomás Hernández
 
-## Getting Started
+Welcome to my portfolio website a modern, design-forward showcase of my work as a Senior Web Developer and Frontend Engineer.
 
-First, run the development server:
+This project reflects the way I approach software: with clarity, craftsmanship, and a strong focus on user experience. It highlights my experience building scalable digital products, leading frontend initiatives, and turning ideas into reliable, high-quality experiences.
+
+## What this portfolio communicates
+
+This website is more than a personal landing page. It tells a story about:
+
+- a decade of experience building web applications
+- deep expertise in React, TypeScript, and modern frontend architecture
+- a practical mindset grounded in performance, maintainability, and clean code
+- a developer who cares as much about product impact as about technical execution
+
+## Highlights
+
+- A polished hero section that introduces my professional profile
+- A clear overview of my background, values, and experience
+- A skills section that showcases my technical depth across the modern web stack
+- A journey section that gives context to my career growth and professional evolution
+- A contact area designed to make it easy to connect for opportunities or collaborations
+
+## Tech stack
+
+This portfolio is built with:
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- React Icons
+- ESLint
+
+## Run locally
+
+Install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Start the development server:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Then open http://localhost:3000 in your browser.
 
-## Learn More
+## Project structure
 
-To learn more about Next.js, take a look at the following resources:
+- app/components: main sections such as Hero, About, Skills, Experience, Book Recommendations, and Contact
+- content: structured content for the portfolio narrative and recommendations
+- public/images: visual assets used across the site
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Let’s connect
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+If you are looking for a developer who can blend strong technical skills with product thinking, I would love to connect.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This portfolio is meant to be a confident introduction to how I work, what I care about, and the kind of impact I aim to create.
