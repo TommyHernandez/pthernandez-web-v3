@@ -153,7 +153,15 @@ export function Experience() {
             "Participated in the shift from jQuery to modern frameworks, understanding both paradigms deeply.",
         },
       ],
-      stack: ["PHP", "MySQL", "JavaScript", "Bootstrap", "HTML", "CSS", "jQuery"],
+      stack: [
+        "PHP",
+        "MySQL",
+        "JavaScript",
+        "Bootstrap",
+        "HTML",
+        "CSS",
+        "jQuery",
+      ],
       keyLearning:
         "Understanding the backend makes you a better frontend developer. Knowing the server helps you build better interfaces.",
     },
@@ -188,7 +196,7 @@ export function Experience() {
         {/* Timeline ledger */}
         <div className="relative">
           {/* Spine */}
-          <div className="absolute left-[6px] top-3 bottom-3 w-px bg-ink/12 hidden md:block" />
+          <div className="absolute left-1.5 top-3 bottom-3 w-px bg-ink/12 hidden md:block" />
 
           <div className="space-y-16 md:space-y-24">
             {journey.map((exp, index) => {
@@ -196,17 +204,14 @@ export function Experience() {
               const isLead = index === 0;
               const isCurrent = exp.period.includes("Present");
               return (
-                <article
-                  key={index}
-                  className="relative md:pl-14"
-                >
+                <article key={index} className="relative md:pl-14">
                   {/* Spine marker */}
                   <div className="hidden md:block absolute left-0 top-1.5">
                     <span
                       className={`block rounded-full bg-teal ${
                         isLead
                           ? "w-3.5 h-3.5 ring-4 ring-teal-soft"
-                          : "w-2.5 h-2.5 ml-[2px] mt-[2px]"
+                          : "w-2.5 h-2.5 ml-0.5 mt-0.5"
                       }`}
                     />
                   </div>
