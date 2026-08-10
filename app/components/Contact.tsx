@@ -7,7 +7,6 @@ import {
   LuLinkedin as Linkedin,
 } from "react-icons/lu";
 import { useState } from "react";
-import { Footer } from "./Footer";
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -190,8 +189,6 @@ export function Contact() {
             </form>
           </div>
         </div>
-
-        <Footer />
       </div>
     </section>
   );

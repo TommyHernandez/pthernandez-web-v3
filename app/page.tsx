@@ -2,6 +2,7 @@ import { About } from "./components/About";
 import { BookRecommendations } from "./components/BookRecommendations";
 import { Contact } from "./components/Contact";
 import { Experience } from "./components/Experience";
+import { Footer } from "./components/Footer";
 import { Hero } from "./components/Hero";
 import { Skills } from "./components/Skills";
 
@@ -14,6 +15,7 @@ export default function Home() {
       <Experience />
       <BookRecommendations />
       <Contact />
+      <Footer />
     </section>
   );
 }
