@@ -3,10 +3,9 @@ import {
   LuMail as Mail,
   LuMapPin as MapPin,
   LuSend as Send,
-  LuGithub as Github,
-  LuLinkedin as Linkedin,
 } from "react-icons/lu";
 import { useState } from "react";
+import { SocialLinks } from "./SocialLinks";
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -42,7 +41,7 @@ export function Contact() {
         </p>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <h2 className="text-5xl font-bold tracking-tight text-ink leading-tight">
-            Let's work together.
+            Let’s work together.
           </h2>
           <p className="text-subtle font-light max-w-xs md:text-right">
             Open to new projects, collaborations, and conversations.
@@ -58,7 +57,7 @@ export function Contact() {
               </h3>
               <p className="text-muted font-light leading-relaxed mb-8 text-sm">
                 Whether you have a project proposal, a question, or just want to
-                say hello, feel free to reach out. I'll do my best to respond
+                say hello, feel free to reach out. I’ll do my best to respond
                 within 24 hours.
               </p>
 
@@ -96,26 +95,7 @@ export function Contact() {
               <p className="text-xs font-semibold text-subtle uppercase tracking-widest mb-4">
                 Social
               </p>
-              <div className="flex gap-3">
-                <a
-                  href="https://github.com/tommyhernandez"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2.5 bg-background border border-ink/8 rounded-xl text-sm font-semibold text-ink hover:bg-surface-muted transition-colors"
-                >
-                  <Github className="w-4 h-4" />
-                  GitHub
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/pedrothdc/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2.5 bg-background border border-ink/8 rounded-xl text-sm font-semibold text-ink hover:bg-surface-muted transition-colors"
-                >
-                  <Linkedin className="w-4 h-4" />
-                  LinkedIn
-                </a>
-              </div>
+              <SocialLinks variant="labelled" />
             </div>
           </div>
 

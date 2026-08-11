@@ -35,7 +35,6 @@ export function Skills() {
         { name: "TypeScript", experience: "6 years", intensity: "core" },
         { name: "Zustand", experience: "3 years", intensity: "regular" },
         { name: "React Query", experience: "4 years", intensity: "regular" },
-        { name: "Styled Components", experience: "5 years", intensity: "regular" },
       ],
     },
     frameworks: {
@@ -118,7 +117,10 @@ export function Skills() {
               >
                 <dt className="sm:w-56 shrink-0">
                   <div className="flex items-center gap-2.5">
-                    <Icon className="w-4 h-4 shrink-0" style={{ color: accent }} />
+                    <Icon
+                      className="w-4 h-4 shrink-0"
+                      style={{ color: accent }}
+                    />
                     <h3 className="text-base font-semibold text-ink">
                       {data.title}
                     </h3>

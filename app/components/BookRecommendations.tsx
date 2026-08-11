@@ -33,11 +33,11 @@ export function BookRecommendations() {
 
         <div className="border-l-2 border-teal pl-6 py-1 mb-16">
           <p className="text-lg text-muted italic font-light leading-snug">
-            &quot;A developer who doesn't read books is like a carpenter who
-            doesn't sharpen their tools.&quot;
+            “A developer who doesn’t read books is like a carpenter who doesn’t
+            sharpen their tools.”
           </p>
           <p className="text-sm text-subtle mt-2 font-light">
-            Reading isn't just learning — it's investing in your craft.
+            Reading isn’t just learning — it’s investing in your craft.
           </p>
         </div>
 
@@ -104,7 +104,7 @@ export function BookRecommendations() {
                 Currently Reading
               </h3>
               <p className="text-muted font-light text-sm leading-relaxed max-w-md">
-                Always learning, always growing. Have a recommendation? I'd love
+                Always learning, always growing. Have a recommendation? I’d love
                 to hear it.
               </p>
             </div>

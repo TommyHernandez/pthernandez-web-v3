@@ -1,10 +1,6 @@
 "use client";
-import {
-  LuGithub as Github,
-  LuLinkedin as Linkedin,
-  LuMail as Mail,
-  LuArrowRight as ArrowRight,
-} from "react-icons/lu";
+import { LuMail as Mail, LuArrowRight as ArrowRight } from "react-icons/lu";
+import { SocialLinks } from "./SocialLinks";
 
 export function Hero() {
   const scrollToSection = (id: string) => {
@@ -69,22 +65,7 @@ export function Hero() {
 
         {/* Social + divider */}
         <div className="flex items-center gap-6 mb-2">
-          <a
-            href="https://github.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2.5 rounded-lg bg-white border border-ink/8 text-muted hover:text-ink hover:border-ink/18 transition-all"
-          >
-            <Github className="w-5 h-5" />
-          </a>
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2.5 rounded-lg bg-white border border-ink/8 text-muted hover:text-ink hover:border-ink/18 transition-all"
-          >
-            <Linkedin className="w-5 h-5" />
-          </a>
+          <SocialLinks variant="icon" />
           <div className="h-4 w-px bg-ink/12" />
           <span className="text-sm text-subtle font-light">
             React · TypeScript · Node.js

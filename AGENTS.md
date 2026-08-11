@@ -38,7 +38,9 @@ app/
   page.tsx              # composes all sections in order
   globals.css           # Tailwind entry + design tokens (@theme inline)
   components/           # one file per section (Hero, About, Skills, Experience,
-                        #   BookRecommendations, Contact, Footer)
+                        #   BookRecommendations, Contact, Footer) + shared bits
+                        #   (SocialLinks)
+  types/                # shared TypeScript types — book.ts, social.ts, index.ts
 lib/
   books.ts              # server-only: reads content/books/<locale>/*.md
 content/
@@ -53,6 +55,14 @@ public/images/books/    # book cover images referenced by frontmatter `image`
 - **Server Components by default.** Add `"use client"` only when a component uses
   hooks or browser APIs (currently only `Contact.tsx`, for its form state). If you
   remove the last hook from a component, drop the `"use client"` directive too.
+- **Types live in `app/types/`.** Components and `lib/` modules do not declare their
+  own domain types — add them to the matching file there (or a new one, re-exported
+  from `index.ts`) and import with `import type { X } from "@/app/types"`. Use
+  `import type` so the import is erased at build and never crosses the server/client
+  boundary.
+- **Social links** come from `socialLinks` in `app/components/SocialLinks.tsx` — the
+  single source of truth for URLs. Render them with `<SocialLinks variant="icon" />`
+  (hero) or `variant="labelled"` (contact); never hand-roll the anchors again.
 - **Icons:** react-icons Lucide only, aliased on import
   (`import { LuHeart as Heart } from "react-icons/lu"`). Do not mix icon libraries
   or use emoji as icons.
