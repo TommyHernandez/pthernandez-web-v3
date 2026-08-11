@@ -4,18 +4,22 @@ import { Contact } from "./components/Contact";
 import { Experience } from "./components/Experience";
 import { Footer } from "./components/Footer";
 import { Hero } from "./components/Hero";
+import { ScrollToTop } from "./components/ScrollToTop";
 import { Skills } from "./components/Skills";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background">
-      <Hero />
-      <About />
-      <Skills />
-      <Experience />
-      <BookRecommendations />
-      <Contact />
-      <Footer />
-    </main>
+    <>
+      <main className="min-h-screen bg-background">
+        <Hero />
+        <About />
+        <Skills />
+        <Experience />
+        <BookRecommendations />
+        <Contact />
+        <Footer />
+      </main>
+      <ScrollToTop />
+    </>
   );
 }

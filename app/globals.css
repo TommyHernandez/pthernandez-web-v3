@@ -101,3 +101,12 @@ body {
   background: var(--color-teal);
   border-radius: 60% 40% 50% 50% / 50% 60% 40% 50%;
 }
+:target {
+  scroll-margin-top: 2rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
