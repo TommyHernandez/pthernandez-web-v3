@@ -75,11 +75,11 @@ export function Experience() {
     },
     {
       company: "BestSecret",
-      role: "Fullstack Developer",
+      role: "Frontend Engineer",
       period: "Oct 2019 – Aug 2020",
       icon: TrendingUp,
       story:
-        "My first experience with a hybrid migration for a high-traffic online retailer, where one framework lives inside another. In this case we moved from Hybris to Vue, working with agile methodologies.",
+        "My first experience with a hybrid migration for a high traffic online retailer, where one framework lives inside another. In this case we moved from Hybris to Vue, working with agile methodologies.",
       highlights: [
         {
           title: "E-commerce Features",
@@ -103,7 +103,7 @@ export function Experience() {
     },
     {
       company: "Accenture",
-      role: "Fullstack Developer & Mentor",
+      role: "Frontend Developer",
       period: "Jan 2018 – Oct 2019",
       icon: Users,
       story:
@@ -135,7 +135,7 @@ export function Experience() {
       period: "2015 – 2018",
       icon: Code,
       story:
-        "Where it all began — building complete web solutions from database to interface with PHP and MySQL, and witnessing the shift from jQuery to modern frameworks first-hand.",
+        "Where it all began. Building complete web solutions from database to interface with PHP and MySQL, and witnessing the shift from jQuery to modern frameworks first-hand.",
       highlights: [
         {
           title: "PHP & MySQL",

@@ -8,7 +8,7 @@ import { Skills } from "./components/Skills";
 
 export default function Home() {
   return (
-    <section className="min-h-screen bg-background">
+    <main className="min-h-screen bg-background">
       <Hero />
       <About />
       <Skills />
@@ -16,6 +16,6 @@ export default function Home() {
       <BookRecommendations />
       <Contact />
       <Footer />
-    </section>
+    </main>
   );
 }

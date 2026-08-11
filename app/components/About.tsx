@@ -62,8 +62,7 @@ export function About() {
             PHP, and vanilla JavaScript. I&rsquo;ve shipped products at scale
             for <span className="font-semibold text-ink">IriusRisk</span>,{" "}
             <span className="font-semibold text-ink">BestSecret</span>,{" "}
-            <span className="font-semibold text-ink">SEAT</span>, and
-            enterprises with millions of daily users.
+            <span className="font-semibold text-ink">SEAT</span>.
           </p>
         </div>
 

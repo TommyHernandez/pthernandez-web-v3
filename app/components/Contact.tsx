@@ -58,7 +58,7 @@ export function Contact() {
               </h3>
               <p className="text-muted font-light leading-relaxed mb-8 text-sm">
                 Whether you have a project proposal, a question, or just want to
-                say hello — feel free to reach out. I'll do my best to respond
+                say hello, feel free to reach out. I'll do my best to respond
                 within 24 hours.
               </p>
 
