@@ -68,7 +68,7 @@ export function Hero() {
         </div>
 
         {/* Social + divider */}
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-6 mb-2">
           <a
             href="https://github.com"
             target="_blank"
