@@ -8,3 +8,9 @@ export type {
   SocialLinkVariant,
   SocialLinksProps,
 } from "./social";
+export type {
+  ContactFieldErrors,
+  ContactFormState,
+  ContactFormStatus,
+  ContactMessage,
+} from "./contact";

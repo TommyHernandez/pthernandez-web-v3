@@ -37,12 +37,20 @@ app/
   layout.tsx            # root layout, fonts (Geist / Geist Mono), <html>/<body>
   page.tsx              # composes all sections in order
   globals.css           # Tailwind entry + design tokens (@theme inline)
+  actions/
+    contact.ts           # "use server" — submitContactMessage, the Contact form's action
   components/           # one file per section (Hero, About, Skills, Experience,
                         #   BookRecommendations, Contact, Footer) + shared bits
-                        #   (SocialLinks)
-  types/                # shared TypeScript types — book.ts, social.ts, index.ts
+                        #   (SocialLinks, ContactCaptcha)
+  types/                # shared TypeScript types — book.ts, social.ts, contact.ts, index.ts
 lib/
   books.ts              # server-only: reads content/books/<locale>/*.md
+  contact/
+    constants.ts          # field names, length limits, INITIAL_CONTACT_FORM_STATE
+                          #   (client-safe — no `server-only`, shared with the form)
+    validate.ts           # readContactMessage / validateContactMessage
+    email.ts              # server-only: sends via Resend's REST API (fetch, no SDK)
+    captcha.ts             # server-only: hCaptcha verification (no-op until configured)
 content/
   books/{en,es}/*.md    # book entries — frontmatter (title, author, image,
                         #   excerpt, link, order) + markdown body
@@ -53,13 +61,19 @@ public/images/books/    # book cover images referenced by frontmatter `image`
 ## Conventions
 
 - **Server Components by default.** Add `"use client"` only when a component uses
-  hooks or browser APIs (currently only `Contact.tsx`, for its form state). If you
+  hooks or browser APIs (currently `Contact.tsx`, for `useActionState`/form state,
+  `ContactCaptcha.tsx`, for the hCaptcha script/widget, and `ScrollToTop.tsx`). If you
   remove the last hook from a component, drop the `"use client"` directive too.
 - **Types live in `app/types/`.** Components and `lib/` modules do not declare their
   own domain types — add them to the matching file there (or a new one, re-exported
   from `index.ts`) and import with `import type { X } from "@/app/types"`. Use
   `import type` so the import is erased at build and never crosses the server/client
   boundary.
+- **Mutations are Server Actions in `app/actions/`.** A `"use server"` module may
+  only export async functions — shared constants/initial state it needs (e.g.
+  `INITIAL_CONTACT_FORM_STATE`) live in the matching `lib/` module instead and get
+  imported by both the action and the client component. Validate on the server
+  regardless of client-side `required`/`type` attributes; never trust `FormData`.
 - **Social links** come from `socialLinks` in `app/components/SocialLinks.tsx` — the
   single source of truth for URLs. Render them with `<SocialLinks variant="icon" />`
   (hero) or `variant="labelled"` (contact); never hand-roll the anchors again.
@@ -145,10 +159,36 @@ accent token.
 Every change must hold at 375 px with no horizontal scroll. Section heads and ledger
 rows collapse to a single column below the `sm`/`md` breakpoints — preserve that.
 
+## Contact form
+
+`Contact.tsx` posts to the `submitContactMessage` Server Action
+(`app/actions/contact.ts`) via `useActionState`, so it works with JavaScript
+disabled (progressive enhancement) and re-renders with per-field errors and the
+visitor's typed values on failure. On success the form resets via a `formRef`
+effect (uncontrolled inputs only read `defaultValue` on mount, so a plain
+re-render can't clear them).
+
+Anti-bot layers, both server-enforced:
+- **Honeypot** — a visually + `aria-hidden` hidden field (`CONTACT_FIELDS.honeypot`,
+  currently named `website`). Any value in it is treated as a bot; the action
+  returns the normal success state so the bot has no signal it was caught.
+- **hCaptcha** — wired but inert until configured. `ContactCaptcha.tsx` renders
+  nothing unless `NEXT_PUBLIC_HCAPTCHA_SITE_KEY` is set; `lib/contact/captcha.ts`
+  only enforces the check once **both** that and `HCAPTCHA_SECRET_KEY` are set —
+  requiring both avoids a half-configured deploy silently rejecting every
+  submission. To turn it on: create a site at
+  https://dashboard.hcaptcha.com and set both env vars — nothing else to change.
+
+Required env vars (see `.env.template`) for mail delivery via Resend's REST API
+(`lib/contact/email.ts`, plain `fetch`, no SDK dependency):
+- `RESEND_API_KEY`, `CONTACT_FROM_EMAIL` (sender — must be on a domain verified in
+  Resend), `CONTACT_TO_EMAIL` (inbox the messages land in).
+- With these unset, `sendContactEmail` logs the message to the server console in
+  development instead of failing; in production it throws instead of pretending
+  to succeed.
+
 ## Known TODOs / gotchas
 
-- Contact form only `console.log`s + `alert`s on submit; email/social links are
-  placeholders (`your.email@example.com`, `https://github.com`). Not yet wired.
 - Production domain is **https://pedrotomas.dev** (`metadataBase` in `app/layout.tsx`).
   There is no Open Graph image yet — add one and reference it (relative path resolves
   against `metadataBase`) for richer social cards.

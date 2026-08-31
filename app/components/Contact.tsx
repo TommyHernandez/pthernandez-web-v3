@@ -1,25 +1,46 @@
 "use client";
+
 import {
+  LuCircleCheck as CircleCheck,
+  LuCircleAlert as CircleAlert,
   LuMail as Mail,
   LuMapPin as MapPin,
   LuSend as Send,
 } from "react-icons/lu";
-import { useState } from "react";
+import { useActionState, useEffect, useRef } from "react";
+import { useFormStatus } from "react-dom";
+import { submitContactMessage } from "@/app/actions/contact";
+import { ContactCaptcha } from "./ContactCaptcha";
 import { SocialLinks } from "./SocialLinks";
+import { CONTACT_FIELDS, INITIAL_CONTACT_FORM_STATE } from "@/lib/contact/constants";
+
+function SubmitButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <button
+      type="submit"
+      disabled={pending}
+      className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-ink text-background rounded-xl text-sm font-semibold hover:bg-ink-hover transition-colors cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+    >
+      <Send className="w-4 h-4" />
+      {pending ? "Sending…" : "Send Message"}
+    </button>
+  );
+}
 
 export function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const [state, formAction] = useActionState(
+    submitContactMessage,
+    INITIAL_CONTACT_FORM_STATE,
+  );
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-    alert("Thank you for your message! I'll get back to you soon.");
-    setFormData({ name: "", email: "", message: "" });
-  };
+  // Uncontrolled inputs only read `defaultValue` on mount, so a successful
+  // submission needs an explicit reset to actually clear the fields.
+  useEffect(() => {
+    if (state.status === "success") formRef.current?.reset();
+  }, [state.status]);
 
   return (
     <section
@@ -101,71 +122,136 @@ export function Contact() {
 
           {/* Form */}
           <div className="bg-surface rounded-2xl p-8 border border-ink/7">
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form
+              ref={formRef}
+              action={formAction}
+              className="space-y-5"
+              noValidate
+            >
+              {/* Honeypot — hidden from sighted and screen-reader users alike;
+                  a filled value marks the submission as a bot. */}
+              <div className="hidden" aria-hidden="true">
+                <label htmlFor={CONTACT_FIELDS.honeypot}>
+                  Leave this field empty
+                </label>
+                <input
+                  id={CONTACT_FIELDS.honeypot}
+                  name={CONTACT_FIELDS.honeypot}
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
+
               <div>
                 <label
-                  htmlFor="name"
+                  htmlFor={CONTACT_FIELDS.name}
                   className="block text-xs font-semibold text-muted uppercase tracking-wide mb-2"
                 >
                   Name
                 </label>
                 <input
-                  id="name"
+                  id={CONTACT_FIELDS.name}
+                  name={CONTACT_FIELDS.name}
                   type="text"
                   placeholder="Your name"
-                  value={formData.name}
-                  onChange={(e) =>
-                    setFormData({ ...formData, name: e.target.value })
-                  }
+                  defaultValue={state.values.name}
                   required
+                  aria-invalid={Boolean(state.fieldErrors.name)}
+                  aria-describedby={
+                    state.fieldErrors.name ? "name-error" : undefined
+                  }
                   className="w-full px-4 py-3 bg-background border border-ink/10 rounded-xl text-sm text-ink placeholder:text-placeholder focus:outline-none focus:ring-2 focus:ring-teal/30 focus:border-teal transition-all"
                 />
+                {state.fieldErrors.name && (
+                  <p
+                    id="name-error"
+                    className="mt-2 text-xs text-terracotta-strong"
+                  >
+                    {state.fieldErrors.name}
+                  </p>
+                )}
               </div>
               <div>
                 <label
-                  htmlFor="email"
+                  htmlFor={CONTACT_FIELDS.email}
                   className="block text-xs font-semibold text-muted uppercase tracking-wide mb-2"
                 >
                   Email
                 </label>
                 <input
-                  id="email"
+                  id={CONTACT_FIELDS.email}
+                  name={CONTACT_FIELDS.email}
                   type="email"
                   placeholder="your.email@example.com"
-                  value={formData.email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
+                  defaultValue={state.values.email}
                   required
+                  aria-invalid={Boolean(state.fieldErrors.email)}
+                  aria-describedby={
+                    state.fieldErrors.email ? "email-error" : undefined
+                  }
                   className="w-full px-4 py-3 bg-background border border-ink/10 rounded-xl text-sm text-ink placeholder:text-placeholder focus:outline-none focus:ring-2 focus:ring-teal/30 focus:border-teal transition-all"
                 />
+                {state.fieldErrors.email && (
+                  <p
+                    id="email-error"
+                    className="mt-2 text-xs text-terracotta-strong"
+                  >
+                    {state.fieldErrors.email}
+                  </p>
+                )}
               </div>
               <div>
                 <label
-                  htmlFor="message"
+                  htmlFor={CONTACT_FIELDS.message}
                   className="block text-xs font-semibold text-muted uppercase tracking-wide mb-2"
                 >
                   Message
                 </label>
                 <textarea
-                  id="message"
+                  id={CONTACT_FIELDS.message}
+                  name={CONTACT_FIELDS.message}
                   placeholder="Tell me about your project..."
                   rows={5}
-                  value={formData.message}
-                  onChange={(e) =>
-                    setFormData({ ...formData, message: e.target.value })
-                  }
+                  defaultValue={state.values.message}
                   required
+                  aria-invalid={Boolean(state.fieldErrors.message)}
+                  aria-describedby={
+                    state.fieldErrors.message ? "message-error" : undefined
+                  }
                   className="w-full px-4 py-3 bg-background border border-ink/10 rounded-xl text-sm text-ink placeholder:text-placeholder focus:outline-none focus:ring-2 focus:ring-teal/30 focus:border-teal transition-all resize-none"
                 />
+                {state.fieldErrors.message && (
+                  <p
+                    id="message-error"
+                    className="mt-2 text-xs text-terracotta-strong"
+                  >
+                    {state.fieldErrors.message}
+                  </p>
+                )}
               </div>
-              <button
-                type="submit"
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-ink text-background rounded-xl text-sm font-semibold hover:bg-ink-hover transition-colors cursor-pointer"
-              >
-                <Send className="w-4 h-4" />
-                Send Message
-              </button>
+
+              <ContactCaptcha />
+
+              {state.status !== "idle" && (
+                <p
+                  role="status"
+                  className={`flex items-center gap-2 text-sm font-medium ${
+                    state.status === "success"
+                      ? "text-teal-strong"
+                      : "text-terracotta-strong"
+                  }`}
+                >
+                  {state.status === "success" ? (
+                    <CircleCheck className="w-4 h-4 shrink-0" />
+                  ) : (
+                    <CircleAlert className="w-4 h-4 shrink-0" />
+                  )}
+                  {state.message}
+                </p>
+              )}
+
+              <SubmitButton />
             </form>
           </div>
         </div>
