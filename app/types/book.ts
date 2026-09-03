@@ -7,9 +7,11 @@ export interface Book {
   image: string;
   /** Short text shown on the card. */
   excerpt: string;
-  /** Full review (markdown body). Kept for a future "read more" detail view. */
+  /** Full review (markdown body), shown in the "read more" detail modal. */
   body: string;
-  /** Optional outbound link (e.g. Amazon affiliate). Wired up later. */
+  /** Language the book is available in, e.g. "English". */
+  language: string;
+  /** Optional outbound link (e.g. Amazon affiliate). Empty until filled in. */
   link?: string;
 }
 

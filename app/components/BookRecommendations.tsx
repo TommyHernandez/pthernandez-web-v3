@@ -1,9 +1,6 @@
-import Image from "next/image";
-import {
-  LuBookOpen as BookOpen,
-  LuExternalLink as ExternalLink,
-} from "react-icons/lu";
+import { LuBookOpen as BookOpen } from "react-icons/lu";
 import { getBooks } from "@/lib/books";
+import { BookCard } from "@/app/components/BookCard";
 
 export function BookRecommendations() {
   const books = getBooks("en");
@@ -43,54 +40,7 @@ export function BookRecommendations() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {books.map((book) => (
-            <div
-              key={book.slug}
-              className="bg-white rounded-2xl overflow-hidden border border-ink/7 hover:shadow-md transition-shadow duration-300 group flex flex-col"
-            >
-              {/* Book image */}
-              <div className="relative h-44 overflow-hidden bg-surface-muted">
-                <Image
-                  src={book.image}
-                  alt={book.title}
-                  fill
-                  sizes="(min-width: 1024px) 320px, (min-width: 768px) 50vw, 100vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-
-              <div className="p-6 flex flex-col flex-1">
-                <h3 className="text-base font-bold text-ink mb-0.5 group-hover:text-teal transition-colors">
-                  {book.title}
-                </h3>
-                <p className="text-xs text-subtle font-light mb-3">
-                  by {book.author}
-                </p>
-
-                <p className="text-xs text-muted font-light leading-relaxed mb-4">
-                  {book.excerpt}
-                </p>
-
-                <div className="mt-auto">
-                  {/* TODO: link → Amazon affiliate; future: open full review detail */}
-                  {book.link ? (
-                    <a
-                      href={book.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-teal hover:gap-2.5 transition-all group/btn cursor-pointer"
-                    >
-                      Find This Book
-                      <ExternalLink className="w-3.5 h-3.5 group-hover/btn:scale-110 transition-transform" />
-                    </a>
-                  ) : (
-                    <button className="inline-flex items-center gap-1.5 text-xs font-semibold text-teal hover:gap-2.5 transition-all group/btn cursor-pointer">
-                      Find This Book
-                      <ExternalLink className="w-3.5 h-3.5 group-hover/btn:scale-110 transition-transform" />
-                    </button>
-                  )}
-                </div>
-              </div>
-            </div>
+            <BookCard key={book.slug} book={book} />
           ))}
         </div>
 

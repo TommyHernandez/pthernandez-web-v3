@@ -35,7 +35,10 @@ export function getBooks(locale: BookLocale = "en"): Book[] {
         image: image ? `/images/books/${image}` : "",
         excerpt: String(data.excerpt ?? "").trim(),
         body: content.trim(),
-        link: data.link ? String(data.link).trim() : undefined,
+        language: String(data.language ?? "").trim(),
+        link: data.afiliateLink
+          ? String(data.afiliateLink).trim() || undefined
+          : undefined,
       } satisfies Book,
     };
   });
