@@ -98,7 +98,7 @@ export function BookCard({ book }: { book: Book }) {
         onClick={(event) => {
           if (event.target === dialogRef.current) closeModal();
         }}
-        className="m-0 w-full h-[100dvh] max-w-full max-h-[100dvh] rounded-none border-0 sm:m-auto sm:w-[min(90vw,720px)] sm:h-auto sm:max-w-[min(90vw,720px)] sm:max-h-[85vh] sm:rounded-2xl sm:border sm:border-ink/7 xl:w-[min(80vw,960px)] xl:max-w-[min(80vw,960px)] xl:h-[85vh] xl:max-h-[85vh] bg-white p-0 backdrop:bg-ink/50"
+        className="m-0 w-full h-dvh max-w-full max-h-dvh rounded-none border-0 sm:m-auto sm:w-[min(90vw,720px)] sm:h-auto sm:max-w-[min(90vw,720px)] sm:max-h-[85vh] sm:rounded-2xl sm:border sm:border-ink/7 xl:w-[min(80vw,960px)] xl:max-w-[min(80vw,960px)] xl:h-[85vh] xl:max-h-[85vh] bg-white p-0 backdrop:bg-ink/50"
       >
         <div className="relative grid grid-rows-[auto_1fr] h-full sm:grid-rows-none sm:grid-cols-[220px_1fr] sm:h-auto sm:max-h-[85vh] xl:grid-cols-[340px_1fr] xl:h-full xl:max-h-[85vh]">
           <button
