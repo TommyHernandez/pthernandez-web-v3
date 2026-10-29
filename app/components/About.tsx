@@ -16,7 +16,7 @@ export function About() {
     },
     {
       title: "Enterprise scale",
-      body: "Shipped for BestSecret and SEAT: solutions that stay fast and dependable under real traffic, across complex multi-team engineering orgs.",
+      body: "Shipped for BestSecret and Accenture: solutions that stay fast and dependable under real traffic, across complex multi-team engineering orgs.",
     },
     {
       title: "Clean-code mindset",
@@ -62,7 +62,7 @@ export function About() {
             PHP, and vanilla JavaScript. I&rsquo;ve shipped products at scale
             for <span className="font-semibold text-ink">IriusRisk</span>,{" "}
             <span className="font-semibold text-ink">BestSecret</span>,{" "}
-            <span className="font-semibold text-ink">SEAT</span>.
+            <span className="font-semibold text-ink">Accenture</span>.
           </p>
         </div>
 
